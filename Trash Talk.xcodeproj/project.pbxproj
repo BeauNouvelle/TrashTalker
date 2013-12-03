@@ -21,6 +21,10 @@
 		8B799396184D9406007A5F0D /* sky@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B799395184D9406007A5F0D /* sky@2x.png */; };
 		8B799398184D940F007A5F0D /* backtrash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B799397184D940F007A5F0D /* backtrash@2x.png */; };
 		8B79939B184E2533007A5F0D /* CharacterSpriteNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B79939A184E2533007A5F0D /* CharacterSpriteNode.m */; };
+		8B79939F184E48A4007A5F0D /* fireFly.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8B79939D184E48A4007A5F0D /* fireFly.sks */; };
+		8B7993A0184E48A4007A5F0D /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B79939E184E48A4007A5F0D /* spark.png */; };
+		8B7993A2184E4CC8007A5F0D /* spark.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8B7993A1184E4CC8007A5F0D /* spark.sks */; };
+		8B7993A4184E4EDE007A5F0D /* dirt.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B7993A3184E4EDE007A5F0D /* dirt.png */; };
 		EFF5A42718430380000E2B06 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFF5A42618430380000E2B06 /* Foundation.framework */; };
 		EFF5A42918430380000E2B06 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFF5A42818430380000E2B06 /* CoreGraphics.framework */; };
 		EFF5A42B18430380000E2B06 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFF5A42A18430380000E2B06 /* UIKit.framework */; };
@@ -67,6 +71,10 @@
 		8B799397184D940F007A5F0D /* backtrash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backtrash@2x.png"; sourceTree = "<group>"; };
 		8B799399184E2533007A5F0D /* CharacterSpriteNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterSpriteNode.h; sourceTree = "<group>"; };
 		8B79939A184E2533007A5F0D /* CharacterSpriteNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterSpriteNode.m; sourceTree = "<group>"; };
+		8B79939D184E48A4007A5F0D /* fireFly.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = fireFly.sks; path = Particles/fireFly.sks; sourceTree = "<group>"; };
+		8B79939E184E48A4007A5F0D /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spark.png; path = Particles/spark.png; sourceTree = "<group>"; };
+		8B7993A1184E4CC8007A5F0D /* spark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = spark.sks; path = Particles/spark.sks; sourceTree = "<group>"; };
+		8B7993A3184E4EDE007A5F0D /* dirt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dirt.png; path = Particles/dirt.png; sourceTree = "<group>"; };
 		EFF5A42318430380000E2B06 /* Trash Talk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trash Talk.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFF5A42618430380000E2B06 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EFF5A42818430380000E2B06 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -163,6 +171,17 @@
 			path = "Textures/Large Images";
 			sourceTree = "<group>";
 		};
+		8B79939C184E485A007A5F0D /* Particles */ = {
+			isa = PBXGroup;
+			children = (
+				8B7993A3184E4EDE007A5F0D /* dirt.png */,
+				8B79939D184E48A4007A5F0D /* fireFly.sks */,
+				8B79939E184E48A4007A5F0D /* spark.png */,
+				8B7993A1184E4CC8007A5F0D /* spark.sks */,
+			);
+			name = Particles;
+			sourceTree = "<group>";
+		};
 		EFF5A41A18430380000E2B06 = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +216,7 @@
 		EFF5A42E18430380000E2B06 /* Trash Talk */ = {
 			isa = PBXGroup;
 			children = (
+				8B79939C184E485A007A5F0D /* Particles */,
 				8B79936D184D631B007A5F0D /* Textures */,
 				8B799368184D61AF007A5F0D /* Classes */,
 				EFF5A43718430380000E2B06 /* AppDelegate.h */,
@@ -322,8 +342,12 @@
 				8B799391184D90FA007A5F0D /* fenceline@2x.png in Resources */,
 				EFF5A43C18430380000E2B06 /* Main.storyboard in Resources */,
 				8B799374184D63D5007A5F0D /* MenuScene.atlas in Resources */,
+				8B79939F184E48A4007A5F0D /* fireFly.sks in Resources */,
 				8B799393184D90FA007A5F0D /* rubbish@2x.png in Resources */,
+				8B7993A2184E4CC8007A5F0D /* spark.sks in Resources */,
 				8B799373184D63D5007A5F0D /* EnterScene.atlas in Resources */,
+				8B7993A4184E4EDE007A5F0D /* dirt.png in Resources */,
+				8B7993A0184E48A4007A5F0D /* spark.png in Resources */,
 				8B799376184D63D5007A5F0D /* SplashScreen.atlas in Resources */,
 				8B799398184D940F007A5F0D /* backtrash@2x.png in Resources */,
 				8B799396184D9406007A5F0D /* sky@2x.png in Resources */,

@@ -23,10 +23,8 @@
     if (self = [super init]) {
         textures = [SKTextureAtlas atlasNamed:@"MenuScene"];
         self.textureName = texture;
-//        self.userInteractionEnabled = YES;
         
-        [self setUp];
-        
+        [self setUp];        
     }
     return self;
 }
@@ -34,12 +32,17 @@
 - (void)setUp {
     self.name = _textureName;
     
+    NSString *myParticlePath = [[NSBundle mainBundle] pathForResource:@"fireFly" ofType:@"sks"];
+    SKEmitterNode *myParticle = [NSKeyedUnarchiver unarchiveObjectWithFile:myParticlePath];
+    myParticle.position = CGPointMake(0, -40);
+    
     trashCan = [self createTrashcan];
     _character = [self createCharacter];
     _character.position = CGPointMake(self.frame.size.width/2, 50);
     
     [self addChild:trashCan];
     [self addChild:_character];
+    [_character addChild:myParticle];
 }
 
 - (SKSpriteNode *)createCharacter {
@@ -77,6 +80,11 @@
 }
 
 - (SKAction *)animationPopOut {
+    NSString *myParticlePath = [[NSBundle mainBundle] pathForResource:@"spark" ofType:@"sks"];
+    SKEmitterNode *myParticle = [NSKeyedUnarchiver unarchiveObjectWithFile:myParticlePath];
+    myParticle.position = CGPointMake(0, trashCan.size.height+50);
+    [trashCan addChild:myParticle];
+    
     SKAction *moveCharacterUp = [SKAction moveToY:80 duration:0.1];
 
     return moveCharacterUp;
