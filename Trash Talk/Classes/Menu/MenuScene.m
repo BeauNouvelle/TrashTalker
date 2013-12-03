@@ -6,12 +6,15 @@
 //  Copyright (c) 2013 Sharp Agency. All rights reserved.
 //
 
-// A speed of 1 is a 1:1 ratio with the position of the touch input. 
-#define SKY_SCROLL_SPEED 0.1
-#define BACK_TRASH_SCROLL_SPEED 0.5
-#define FENCE_SCROLL_SPEED 0.8
-#define RUBBISH_SCROLL_SPEED 1
-#define GROUND_SCROLL_SPEED 1.15
+// A speed of 1 is a 1:1 ratio with the position of the touch input.
+#define SKY_SCROLL_SPEED 0.03
+#define BACK_TRASH_SCROLL_SPEED 0.08
+#define FENCE_SCROLL_SPEED 0.1
+#define RUBBISH_SCROLL_SPEED .5
+#define GROUND_SCROLL_SPEED 0.75
+
+#define MOVE_BY_DISTANCE 1136 // move all by a fraction of this distance
+#define WITH_DURATION .5
 
 
 #import "MenuScene.h"
@@ -26,7 +29,6 @@
 @property (nonatomic, strong) SKSpriteNode *trashBackground;
 @property (nonatomic, strong) SKSpriteNode *groundBackground;
 
-
 @property (nonatomic, strong) SKSpriteNode *garbageCanSprite;
 
 @property (nonatomic, strong) UIPanGestureRecognizer *pan;
@@ -35,18 +37,17 @@
 
 @implementation MenuScene {
     SKTextureAtlas *textures;
+    int screenPosition;
+
 }
 
 - (void)didMoveToView:(SKView *)view {
     if (!self.contentCreated) {
+        screenPosition = 1;
         
-        if (!self.pan) {
-            
-            self.pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(dragScene:)];
-            self.pan.minimumNumberOfTouches = 1;
-            self.pan.delegate = self;
-            [self.view addGestureRecognizer:self.pan];
-        }
+        [self addPanGestureRecognizer];
+        [self addSwipeRecognizerForDirection:UISwipeGestureRecognizerDirectionLeft];
+        [self addSwipeRecognizerForDirection:UISwipeGestureRecognizerDirectionRight];
         
         [self createSceneContents];
         self.contentCreated = YES;
@@ -64,31 +65,98 @@
     
     // Create Back Trash
     _backtrashBackground = [SKSpriteNode spriteNodeWithImageNamed:@"backtrash"];
-    _backtrashBackground.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
-    _backtrashBackground.zPosition = 1;
     _trashBackground.scale = .2;
+    _backtrashBackground.position = CGPointMake(_backtrashBackground.size.width, CGRectGetMidY(self.frame));
+    _backtrashBackground.zPosition = 1;
     [self addChild:_backtrashBackground];
-
+    
     // Create Fence
     _fenceBackground = [SKSpriteNode spriteNodeWithImageNamed:@"fenceline"];
-    _fenceBackground.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame)+(_fenceBackground.size.height*.15));
-    _fenceBackground.zPosition = 2;
     _fenceBackground.scale = .6;
+    _fenceBackground.position = CGPointMake((_fenceBackground.size.width/2)-20, CGRectGetMidY(self.frame)+(_fenceBackground.size.height*.15));
+    _fenceBackground.zPosition = 2;
     [self addChild:_fenceBackground];
     
     // Create Ground
     _groundBackground = [SKSpriteNode spriteNodeWithImageNamed:@"ground"];
-    _groundBackground.position = CGPointMake(CGRectGetMidX(self.frame), _groundBackground.size.height/2);
+    _groundBackground.position = CGPointMake(_groundBackground.size.width/2, _groundBackground.size.height/2);
     _groundBackground.zPosition = 3;
     [self addChild:_groundBackground];
     
     // Create Trash
     _trashBackground = [SKSpriteNode spriteNodeWithImageNamed:@"rubbish"];
-    _trashBackground.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame)-(_trashBackground.size.height/2));
+    _trashBackground.position = CGPointMake(_trashBackground.size.width/2, CGRectGetMidY(self.frame)-(_trashBackground.size.height/2));
     _trashBackground.name = @"trash";
     _trashBackground.zPosition = 4;
     [self addChild:_trashBackground];
     
+    // Create Characters
+    
+}
+
+- (void)addPanGestureRecognizer {
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(dragScene:)];
+    pan.minimumNumberOfTouches = 1;
+    pan.delegate = self;
+    [self.view addGestureRecognizer:pan];
+    
+}
+
+- (void)addSwipeRecognizerForDirection:(UISwipeGestureRecognizerDirection)direction {
+    // Create a swipe recognizer for the wanted direction
+    UISwipeGestureRecognizer *swipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(isSwiped:)];
+    swipeRecognizer.direction = direction;
+    [self.view addGestureRecognizer:swipeRecognizer];
+}
+
+- (void)isSwiped:(UISwipeGestureRecognizer *)recognizer {
+
+    if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
+        if (screenPosition < 5) {
+        
+        SKAction *moveSky = [SKAction moveByX:-MOVE_BY_DISTANCE*SKY_SCROLL_SPEED y:0 duration:WITH_DURATION];
+        SKAction *moveBacktrash = [SKAction moveByX:-MOVE_BY_DISTANCE*BACK_TRASH_SCROLL_SPEED y:0 duration:WITH_DURATION];
+        SKAction *moveFence = [SKAction moveByX:-MOVE_BY_DISTANCE*FENCE_SCROLL_SPEED y:0 duration:WITH_DURATION];
+        SKAction *moveRubbish = [SKAction moveByX:-MOVE_BY_DISTANCE*RUBBISH_SCROLL_SPEED y:0 duration:WITH_DURATION];
+        SKAction *moveGround = [SKAction moveByX:-MOVE_BY_DISTANCE*GROUND_SCROLL_SPEED y:0 duration:WITH_DURATION];
+        
+        //        SKAction *moveCharacter = [SKAction moveByX:trans.x y:0 duration:0];
+        
+        [_skyBackground runAction:moveSky];
+        [_backtrashBackground runAction:moveBacktrash];
+        [_fenceBackground runAction:moveFence];
+        [_trashBackground runAction:moveRubbish];
+        [_groundBackground runAction:moveGround];
+        NSLog(@"Swipe Left");
+        
+        screenPosition++;
+        }
+    }
+    else if (recognizer.direction == UISwipeGestureRecognizerDirectionRight) {
+        if (screenPosition > 1) {
+        SKAction *moveSky = [SKAction moveByX:MOVE_BY_DISTANCE*SKY_SCROLL_SPEED y:0 duration:WITH_DURATION];
+        SKAction *moveBacktrash = [SKAction moveByX:MOVE_BY_DISTANCE*BACK_TRASH_SCROLL_SPEED y:0 duration:WITH_DURATION];
+        SKAction *moveFence = [SKAction moveByX:MOVE_BY_DISTANCE*FENCE_SCROLL_SPEED y:0 duration:WITH_DURATION];
+        SKAction *moveRubbish = [SKAction moveByX:MOVE_BY_DISTANCE*RUBBISH_SCROLL_SPEED y:0 duration:WITH_DURATION];
+        SKAction *moveGround = [SKAction moveByX:MOVE_BY_DISTANCE*GROUND_SCROLL_SPEED y:0 duration:WITH_DURATION];
+        
+        //        SKAction *moveCharacter = [SKAction moveByX:trans.x y:0 duration:0];
+        
+        [_skyBackground runAction:moveSky];
+        [_backtrashBackground runAction:moveBacktrash];
+        [_fenceBackground runAction:moveFence];
+        [_trashBackground runAction:moveRubbish];
+        [_groundBackground runAction:moveGround];
+        NSLog(@"Swipe Right");
+        
+        screenPosition--;
+        }
+    }
+    NSLog(@"ScreenPosition = %d", screenPosition);
+}
+
+- (BOOL)gestureRecognizer:(UIPanGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UISwipeGestureRecognizer *)otherGestureRecognizer {
+    return YES;
 }
 
 - (void)dragScene:(UIPanGestureRecognizer *)gesture {
@@ -101,23 +169,28 @@
     SKAction *moveRubbish = [SKAction moveByX:trans.x*RUBBISH_SCROLL_SPEED y:0 duration:0];
     SKAction *moveGround = [SKAction moveByX:trans.x*GROUND_SCROLL_SPEED y:0 duration:0];
     
-    SKAction *moveCharacter = [SKAction moveByX:trans.x y:0 duration:0];
+//    SKAction *moveCharacter = [SKAction moveByX:trans.x y:0 duration:0];
+
+//    [_skyBackground runAction:moveSky];
+//    [_backtrashBackground runAction:moveBacktrash];
+//    [_fenceBackground runAction:moveFence];
+//    [_trashBackground runAction:moveRubbish];
+//    [_groundBackground runAction:moveGround];
     
-    [_skyBackground runAction:moveSky];
-    [_backtrashBackground runAction:moveBacktrash];
-    [_fenceBackground runAction:moveFence];
-    [_trashBackground runAction:moveRubbish];
-    [_groundBackground runAction:moveGround];
-    
-    
-//    if (_trashBackground.position.x <= -_trashBackground.size.width*.25) {
-//        NSLog(@"Background is less than width");
-//        SKSpriteNode *newBackground = _trashBackground;
-//        newBackground.position = CGPointMake(_trashBackground.position.x + newBackground.size.width * 2, newBackground.position.y);
+    // Scroll conveyor sprite
+//    if (_groundBackground.position.x < -_groundBackground.size.width){
+//        _groundBackground.position = CGPointMake(_groundBackground.position.x + _groundBackground.size.width, _groundBackground.position.y);
 //    }
     
+    
+    //    if (_trashBackground.position.x <= -_trashBackground.size.width*.25) {
+    //        NSLog(@"Background is less than width");
+    //        SKSpriteNode *newBackground = _trashBackground;
+    //        newBackground.position = CGPointMake(_trashBackground.position.x + newBackground.size.width * 2, newBackground.position.y);
+    //    }
+    
     [gesture setTranslation:CGPointMake(0, 0) inView:self.view];
-
+    
 }
 
 //#pragma mark - Update Method
