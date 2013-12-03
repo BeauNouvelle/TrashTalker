@@ -16,6 +16,9 @@
 #define MOVE_BY_DISTANCE 1136 // move all by a fraction of this distance
 #define WITH_DURATION .5
 
+#define CHARACTER_SPACING (MOVE_BY_DISTANCE * GROUND_SCROLL_SPEED)
+
+
 
 #import "MenuScene.h"
 
@@ -78,20 +81,57 @@
     [self addChild:_fenceBackground];
     
     // Create Ground
-    _groundBackground = [SKSpriteNode spriteNodeWithImageNamed:@"ground"];
+    _groundBackground = [self createGroundSprite];
     _groundBackground.position = CGPointMake(_groundBackground.size.width/2, _groundBackground.size.height/2);
     _groundBackground.zPosition = 3;
     [self addChild:_groundBackground];
     
     // Create Trash
-    _trashBackground = [SKSpriteNode spriteNodeWithImageNamed:@"rubbish"];
-    _trashBackground.position = CGPointMake(_trashBackground.size.width/2, CGRectGetMidY(self.frame)-(_trashBackground.size.height/2));
-    _trashBackground.name = @"trash";
+    _trashBackground = [self createRubbishSprite];
+    _trashBackground.position = CGPointMake(_trashBackground.size.width/2, CGRectGetMidY(self.frame)/2);
     _trashBackground.zPosition = 4;
     [self addChild:_trashBackground];
     
     // Create Characters
+    NSLog(@"%f", CHARACTER_SPACING);
     
+}
+
+- (SKSpriteNode *)createGroundSprite {
+    SKSpriteNode *ground = [[SKSpriteNode alloc] init];
+    
+    SKSpriteNode *groundOne = [SKSpriteNode spriteNodeWithImageNamed:@"ground"];
+    groundOne.anchorPoint = CGPointZero;
+    groundOne.position = ground.position;
+    [ground addChild:groundOne];
+    
+    SKSpriteNode *groundTwo = [SKSpriteNode spriteNodeWithImageNamed:@"ground"];
+    groundTwo.anchorPoint = CGPointZero;
+    groundTwo.position = CGPointMake(groundOne.size.width, 0);
+    [ground addChild:groundTwo];
+    
+    SKSpriteNode *groundThree = [SKSpriteNode spriteNodeWithImageNamed:@"ground"];
+    groundThree.anchorPoint = CGPointZero;
+    groundThree.position = CGPointMake(groundTwo.size.width*2, 0);
+    [ground addChild:groundThree];
+    
+    return ground;
+}
+
+- (SKSpriteNode *)createRubbishSprite {
+    SKSpriteNode *rubbish = [[SKSpriteNode alloc] init];
+
+    SKSpriteNode *rubbishOne = [SKSpriteNode spriteNodeWithImageNamed:@"rubbish"];
+    rubbishOne.anchorPoint = CGPointZero;
+    rubbishOne.position = rubbish.position;
+    [rubbish addChild:rubbishOne];
+    
+    SKSpriteNode *rubbishTwo = [SKSpriteNode spriteNodeWithImageNamed:@"rubbish"];
+    rubbishTwo.anchorPoint = CGPointZero;
+    rubbishTwo.position = CGPointMake(rubbishOne.size.width, 0);
+    [rubbish addChild:rubbishTwo];
+
+    return rubbish;
 }
 
 - (void)addPanGestureRecognizer {
