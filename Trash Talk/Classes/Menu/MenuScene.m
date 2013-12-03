@@ -6,33 +6,38 @@
 //  Copyright (c) 2013 Sharp Agency. All rights reserved.
 //
 
-// A speed of 1 is a 1:1 ratio with the position of the touch input.
+// The higher the number the slower it will be
 #define SKY_SCROLL_SPEED 0.03
 #define BACK_TRASH_SCROLL_SPEED 0.08
 #define FENCE_SCROLL_SPEED 0.1
-#define RUBBISH_SCROLL_SPEED .5
+#define RUBBISH_SCROLL_SPEED .6
 #define GROUND_SCROLL_SPEED 0.75
 
-#define MOVE_BY_DISTANCE 1136 // move all by a fraction of this distance
+#define MOVE_BY_DISTANCE 960 // move all by a fraction of this distance
 #define WITH_DURATION .5
 
-#define CHARACTER_SPACING (MOVE_BY_DISTANCE * GROUND_SCROLL_SPEED)
-
-
+#define CHARACTER_SPACING (MOVE_BY_DISTANCE * GROUND_SCROLL_SPEED)*2
 
 #import "MenuScene.h"
+#import "CharacterSpriteNode.h"
 
 @interface MenuScene ()
 
 @property BOOL contentCreated;
 
+// Backgrounds
 @property (nonatomic, strong) SKSpriteNode *skyBackground;
 @property (nonatomic, strong) SKSpriteNode *backtrashBackground;
 @property (nonatomic, strong) SKSpriteNode *fenceBackground;
 @property (nonatomic, strong) SKSpriteNode *trashBackground;
 @property (nonatomic, strong) SKSpriteNode *groundBackground;
 
-@property (nonatomic, strong) SKSpriteNode *garbageCanSprite;
+// Characters
+@property (nonatomic, strong) CharacterSpriteNode *trashRat;
+@property (nonatomic, strong) CharacterSpriteNode *rottenApple;
+@property (nonatomic, strong) CharacterSpriteNode *blowFly;
+@property (nonatomic, strong) CharacterSpriteNode *scumGum;
+@property (nonatomic, strong) CharacterSpriteNode *sourSnail;
 
 @property (nonatomic, strong) UIPanGestureRecognizer *pan;
 
@@ -40,15 +45,16 @@
 
 @implementation MenuScene {
     SKTextureAtlas *textures;
+    NSArray *characterArray;
     int screenPosition;
-
+    
 }
 
 - (void)didMoveToView:(SKView *)view {
     if (!self.contentCreated) {
         screenPosition = 1;
         
-        [self addPanGestureRecognizer];
+//        [self addPanGestureRecognizer];
         [self addSwipeRecognizerForDirection:UISwipeGestureRecognizerDirectionLeft];
         [self addSwipeRecognizerForDirection:UISwipeGestureRecognizerDirectionRight];
         
@@ -93,6 +99,32 @@
     [self addChild:_trashBackground];
     
     // Create Characters
+    _trashRat = [[CharacterSpriteNode alloc] initWithTextureNamed:@"trashrat"];
+    _trashRat.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame)*0.6);
+    _trashRat.zPosition = 10;
+    [_trashRat.character runAction:[_trashRat animationPopOut]];
+    [self addChild:_trashRat];
+    
+    _rottenApple = [[CharacterSpriteNode alloc] initWithTextureNamed:@"rottenapple"];
+    _rottenApple.position = CGPointMake(_trashRat.position.x+CHARACTER_SPACING, _trashRat.position.y);
+    _rottenApple.zPosition = 10;
+    [self addChild:_rottenApple];
+    
+    _blowFly = [[CharacterSpriteNode alloc] initWithTextureNamed:@"blowfly"];
+    _blowFly.position = CGPointMake(_rottenApple.position.x+CHARACTER_SPACING, _trashRat.position.y);
+    _blowFly.zPosition = 10;
+    [self addChild:_blowFly];
+    
+    _scumGum = [[CharacterSpriteNode alloc] initWithTextureNamed:@"scumgum"];
+    _scumGum.position = CGPointMake(_blowFly.position.x+CHARACTER_SPACING, _trashRat.position.y);
+    _scumGum.zPosition = 10;
+    [self addChild:_scumGum];
+    
+    _sourSnail = [[CharacterSpriteNode alloc] initWithTextureNamed:@"soursnail"];
+    _sourSnail.position = CGPointMake(_scumGum.position.x+CHARACTER_SPACING, _trashRat.position.y);
+    _sourSnail.zPosition = 10;
+    [self addChild:_sourSnail];
+    
     NSLog(@"%f", CHARACTER_SPACING);
     
 }
@@ -120,7 +152,7 @@
 
 - (SKSpriteNode *)createRubbishSprite {
     SKSpriteNode *rubbish = [[SKSpriteNode alloc] init];
-
+    
     SKSpriteNode *rubbishOne = [SKSpriteNode spriteNodeWithImageNamed:@"rubbish"];
     rubbishOne.anchorPoint = CGPointZero;
     rubbishOne.position = rubbish.position;
@@ -130,7 +162,7 @@
     rubbishTwo.anchorPoint = CGPointZero;
     rubbishTwo.position = CGPointMake(rubbishOne.size.width, 0);
     [rubbish addChild:rubbishTwo];
-
+    
     return rubbish;
 }
 
@@ -149,50 +181,106 @@
     [self.view addGestureRecognizer:swipeRecognizer];
 }
 
+#pragma mark - Swipe Gesture
 - (void)isSwiped:(UISwipeGestureRecognizer *)recognizer {
-
+    
     if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
         if (screenPosition < 5) {
-        
-        SKAction *moveSky = [SKAction moveByX:-MOVE_BY_DISTANCE*SKY_SCROLL_SPEED y:0 duration:WITH_DURATION];
-        SKAction *moveBacktrash = [SKAction moveByX:-MOVE_BY_DISTANCE*BACK_TRASH_SCROLL_SPEED y:0 duration:WITH_DURATION];
-        SKAction *moveFence = [SKAction moveByX:-MOVE_BY_DISTANCE*FENCE_SCROLL_SPEED y:0 duration:WITH_DURATION];
-        SKAction *moveRubbish = [SKAction moveByX:-MOVE_BY_DISTANCE*RUBBISH_SCROLL_SPEED y:0 duration:WITH_DURATION];
-        SKAction *moveGround = [SKAction moveByX:-MOVE_BY_DISTANCE*GROUND_SCROLL_SPEED y:0 duration:WITH_DURATION];
-        
-        //        SKAction *moveCharacter = [SKAction moveByX:trans.x y:0 duration:0];
-        
-        [_skyBackground runAction:moveSky];
-        [_backtrashBackground runAction:moveBacktrash];
-        [_fenceBackground runAction:moveFence];
-        [_trashBackground runAction:moveRubbish];
-        [_groundBackground runAction:moveGround];
-        NSLog(@"Swipe Left");
-        
-        screenPosition++;
+            
+            [self popCharactersIn];
+            
+            SKAction *moveSky = [SKAction moveByX:-MOVE_BY_DISTANCE*SKY_SCROLL_SPEED y:0 duration:WITH_DURATION];
+            SKAction *moveBacktrash = [SKAction moveByX:-MOVE_BY_DISTANCE*BACK_TRASH_SCROLL_SPEED y:0 duration:WITH_DURATION];
+            SKAction *moveFence = [SKAction moveByX:-MOVE_BY_DISTANCE*FENCE_SCROLL_SPEED y:0 duration:WITH_DURATION];
+            SKAction *moveRubbish = [SKAction moveByX:-MOVE_BY_DISTANCE*RUBBISH_SCROLL_SPEED y:0 duration:WITH_DURATION];
+            SKAction *moveGround = [SKAction moveByX:-MOVE_BY_DISTANCE*GROUND_SCROLL_SPEED y:0 duration:WITH_DURATION];
+            
+            SKAction *moveCharacter = [SKAction moveByX:-CHARACTER_SPACING y:0 duration:WITH_DURATION];
+            
+            [_skyBackground runAction:moveSky];
+            [_backtrashBackground runAction:moveBacktrash];
+            [_fenceBackground runAction:moveFence];
+            [_trashBackground runAction:moveRubbish];
+            [_groundBackground runAction:moveGround];
+            
+            [_trashRat runAction:moveCharacter completion:^{
+                [_trashRat runAction:[_trashRat animateWiggle]];
+                [_trashRat.character runAction:[_trashRat animationPopOut]];
+            }];
+            [_rottenApple runAction:moveCharacter completion:^{
+                [_rottenApple runAction:[_rottenApple animateWiggle]];
+                [_rottenApple.character runAction:[_rottenApple animationPopOut]];
+            }];
+            [_blowFly runAction:moveCharacter completion:^{
+                [_blowFly runAction:[_blowFly animateWiggle]];
+                [_blowFly.character runAction:[_blowFly animationPopOut]];
+            }];
+            [_scumGum runAction:moveCharacter completion:^{
+                [_scumGum runAction:[_scumGum animateWiggle]];
+                [_scumGum.character runAction:[_scumGum animationPopOut]];
+            }];
+            [_sourSnail runAction:moveCharacter completion:^{
+                [_sourSnail runAction:[_sourSnail animateWiggle]];
+                [_sourSnail.character runAction:[_sourSnail animationPopOut]];
+            }];
+            
+
+            screenPosition++;
         }
     }
     else if (recognizer.direction == UISwipeGestureRecognizerDirectionRight) {
         if (screenPosition > 1) {
-        SKAction *moveSky = [SKAction moveByX:MOVE_BY_DISTANCE*SKY_SCROLL_SPEED y:0 duration:WITH_DURATION];
-        SKAction *moveBacktrash = [SKAction moveByX:MOVE_BY_DISTANCE*BACK_TRASH_SCROLL_SPEED y:0 duration:WITH_DURATION];
-        SKAction *moveFence = [SKAction moveByX:MOVE_BY_DISTANCE*FENCE_SCROLL_SPEED y:0 duration:WITH_DURATION];
-        SKAction *moveRubbish = [SKAction moveByX:MOVE_BY_DISTANCE*RUBBISH_SCROLL_SPEED y:0 duration:WITH_DURATION];
-        SKAction *moveGround = [SKAction moveByX:MOVE_BY_DISTANCE*GROUND_SCROLL_SPEED y:0 duration:WITH_DURATION];
-        
-        //        SKAction *moveCharacter = [SKAction moveByX:trans.x y:0 duration:0];
-        
-        [_skyBackground runAction:moveSky];
-        [_backtrashBackground runAction:moveBacktrash];
-        [_fenceBackground runAction:moveFence];
-        [_trashBackground runAction:moveRubbish];
-        [_groundBackground runAction:moveGround];
-        NSLog(@"Swipe Right");
-        
-        screenPosition--;
+            
+            [self popCharactersIn];
+            
+            SKAction *moveSky = [SKAction moveByX:MOVE_BY_DISTANCE*SKY_SCROLL_SPEED y:0 duration:WITH_DURATION];
+            SKAction *moveBacktrash = [SKAction moveByX:MOVE_BY_DISTANCE*BACK_TRASH_SCROLL_SPEED y:0 duration:WITH_DURATION];
+            SKAction *moveFence = [SKAction moveByX:MOVE_BY_DISTANCE*FENCE_SCROLL_SPEED y:0 duration:WITH_DURATION];
+            SKAction *moveRubbish = [SKAction moveByX:MOVE_BY_DISTANCE*RUBBISH_SCROLL_SPEED y:0 duration:WITH_DURATION];
+            SKAction *moveGround = [SKAction moveByX:MOVE_BY_DISTANCE*GROUND_SCROLL_SPEED y:0 duration:WITH_DURATION];
+            
+            SKAction *moveCharacter = [SKAction moveByX:CHARACTER_SPACING y:0 duration:WITH_DURATION];
+            
+            [_skyBackground runAction:moveSky];
+            [_backtrashBackground runAction:moveBacktrash];
+            [_fenceBackground runAction:moveFence];
+            [_trashBackground runAction:moveRubbish];
+            [_groundBackground runAction:moveGround];
+            
+            [_trashRat runAction:moveCharacter completion:^{
+                [_trashRat runAction:[_trashRat animateWiggle]];
+                [_trashRat.character runAction:[_trashRat animationPopOut]];
+            }];
+            [_rottenApple runAction:moveCharacter completion:^{
+                [_rottenApple runAction:[_rottenApple animateWiggle]];
+                [_rottenApple.character runAction:[_rottenApple animationPopOut]];
+            }];
+            [_blowFly runAction:moveCharacter completion:^{
+                [_blowFly runAction:[_blowFly animateWiggle]];
+                [_blowFly.character runAction:[_blowFly animationPopOut]];
+            }];
+            [_scumGum runAction:moveCharacter completion:^{
+                [_scumGum runAction:[_scumGum animateWiggle]];
+                [_scumGum.character runAction:[_scumGum animationPopOut]];
+            }];
+            [_sourSnail runAction:moveCharacter completion:^{
+                [_sourSnail runAction:[_sourSnail animateWiggle]];
+                [_sourSnail.character runAction:[_sourSnail animationPopOut]];
+            }];
+            
+            screenPosition--;
         }
     }
     NSLog(@"ScreenPosition = %d", screenPosition);
+}
+
+#pragma mark - Methods for character animations
+- (void)popCharactersIn {
+    [_trashRat.character runAction:[_trashRat animatePopIn]];
+    [_rottenApple.character runAction:[_rottenApple animatePopIn]];
+    [_blowFly.character runAction:[_blowFly animatePopIn]];
+    [_scumGum.character runAction:[_scumGum animatePopIn]];
+    [_sourSnail.character runAction:[_sourSnail animatePopIn]];
 }
 
 - (BOOL)gestureRecognizer:(UIPanGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UISwipeGestureRecognizer *)otherGestureRecognizer {
@@ -209,29 +297,41 @@
     SKAction *moveRubbish = [SKAction moveByX:trans.x*RUBBISH_SCROLL_SPEED y:0 duration:0];
     SKAction *moveGround = [SKAction moveByX:trans.x*GROUND_SCROLL_SPEED y:0 duration:0];
     
-//    SKAction *moveCharacter = [SKAction moveByX:trans.x y:0 duration:0];
-
-//    [_skyBackground runAction:moveSky];
-//    [_backtrashBackground runAction:moveBacktrash];
-//    [_fenceBackground runAction:moveFence];
-//    [_trashBackground runAction:moveRubbish];
-//    [_groundBackground runAction:moveGround];
+    //    SKAction *moveCharacter = [SKAction moveByX:trans.x y:0 duration:0];
+    
+    [_skyBackground runAction:moveSky];
+    [_backtrashBackground runAction:moveBacktrash];
+    [_fenceBackground runAction:moveFence];
+    [_trashBackground runAction:moveRubbish];
+    [_groundBackground runAction:moveGround];
     
     // Scroll conveyor sprite
-//    if (_groundBackground.position.x < -_groundBackground.size.width){
-//        _groundBackground.position = CGPointMake(_groundBackground.position.x + _groundBackground.size.width, _groundBackground.position.y);
-//    }
+    if (_groundBackground.position.x < -_groundBackground.size.width){
+        _groundBackground.position = CGPointMake(_groundBackground.position.x + _groundBackground.size.width, _groundBackground.position.y);
+    }
     
     
-    //    if (_trashBackground.position.x <= -_trashBackground.size.width*.25) {
-    //        NSLog(@"Background is less than width");
-    //        SKSpriteNode *newBackground = _trashBackground;
-    //        newBackground.position = CGPointMake(_trashBackground.position.x + newBackground.size.width * 2, newBackground.position.y);
-    //    }
+    if (_trashBackground.position.x <= -_trashBackground.size.width*.25) {
+        NSLog(@"Background is less than width");
+        SKSpriteNode *newBackground = _trashBackground;
+        newBackground.position = CGPointMake(_trashBackground.position.x + newBackground.size.width * 2, newBackground.position.y);
+    }
     
     [gesture setTranslation:CGPointMake(0, 0) inView:self.view];
-    
 }
+
+#pragma mark - Touch Event Listeners
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch *touch = [touches anyObject];
+    CGPoint positionInScene = [touch locationInNode:self];
+
+    SKNode *node = [self nodeAtPoint:positionInScene];
+    
+    if (node == _trashRat) {
+        NSLog(@"Works");
+    }
+}
+
 
 //#pragma mark - Update Method
 //- (void)update:(NSTimeInterval)currentTime {

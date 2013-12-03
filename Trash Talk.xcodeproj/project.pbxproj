@@ -20,6 +20,7 @@
 		8B799393184D90FA007A5F0D /* rubbish@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B79938F184D90FA007A5F0D /* rubbish@2x.png */; };
 		8B799396184D9406007A5F0D /* sky@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B799395184D9406007A5F0D /* sky@2x.png */; };
 		8B799398184D940F007A5F0D /* backtrash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B799397184D940F007A5F0D /* backtrash@2x.png */; };
+		8B79939B184E2533007A5F0D /* CharacterSpriteNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B79939A184E2533007A5F0D /* CharacterSpriteNode.m */; };
 		EFF5A42718430380000E2B06 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFF5A42618430380000E2B06 /* Foundation.framework */; };
 		EFF5A42918430380000E2B06 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFF5A42818430380000E2B06 /* CoreGraphics.framework */; };
 		EFF5A42B18430380000E2B06 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFF5A42A18430380000E2B06 /* UIKit.framework */; };
@@ -64,6 +65,8 @@
 		8B79938F184D90FA007A5F0D /* rubbish@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rubbish@2x.png"; sourceTree = "<group>"; };
 		8B799395184D9406007A5F0D /* sky@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sky@2x.png"; sourceTree = "<group>"; };
 		8B799397184D940F007A5F0D /* backtrash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backtrash@2x.png"; sourceTree = "<group>"; };
+		8B799399184E2533007A5F0D /* CharacterSpriteNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterSpriteNode.h; sourceTree = "<group>"; };
+		8B79939A184E2533007A5F0D /* CharacterSpriteNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterSpriteNode.m; sourceTree = "<group>"; };
 		EFF5A42318430380000E2B06 /* Trash Talk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trash Talk.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFF5A42618430380000E2B06 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EFF5A42818430380000E2B06 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -128,6 +131,8 @@
 				8B799379184D6F7D007A5F0D /* EnterScene.m */,
 				8B79937B184D73BC007A5F0D /* MenuScene.h */,
 				8B79937C184D73BC007A5F0D /* MenuScene.m */,
+				8B799399184E2533007A5F0D /* CharacterSpriteNode.h */,
+				8B79939A184E2533007A5F0D /* CharacterSpriteNode.m */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -344,6 +349,7 @@
 				EFF5A43F18430380000E2B06 /* ViewController.m in Sources */,
 				EFF5A43918430380000E2B06 /* AppDelegate.m in Sources */,
 				8B79937A184D6F7D007A5F0D /* EnterScene.m in Sources */,
+				8B79939B184E2533007A5F0D /* CharacterSpriteNode.m in Sources */,
 				8B79937D184D73BC007A5F0D /* MenuScene.m in Sources */,
 				EFF5A43518430380000E2B06 /* main.m in Sources */,
 				8B79936C184D61AF007A5F0D /* SplashScreen.m in Sources */,

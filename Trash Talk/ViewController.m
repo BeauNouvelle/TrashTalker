@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "SplashScreen.h"
 #import "MenuScene.h"
+#import "EnterScene.h"
 
 @implementation ViewController
 
@@ -23,7 +24,7 @@
         skView.showsNodeCount = YES;
         
         // Create and configure the scene.
-        SKScene * scene = [MenuScene sceneWithSize:skView.bounds.size];
+        SKScene * scene = [SplashScreen sceneWithSize:skView.bounds.size];
         scene.scaleMode = SKSceneScaleModeAspectFill;
         
         // Present the scene.

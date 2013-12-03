@@ -8,6 +8,7 @@
 
 #import "SplashScreen.h"
 #import "EnterScene.h"
+#import "MenuScene.h"
 
 @interface SplashScreen ()
 
@@ -35,7 +36,7 @@
     
     // Change to next scene after delay
     [self runAction: wait completion:^{
-        SKScene *enterScene  = [[EnterScene alloc] initWithSize:self.size];
+        SKScene *enterScene  = [[MenuScene alloc] initWithSize:self.size];
         SKTransition *fade = [SKTransition fadeWithDuration:0.5];
         [self.view presentScene:enterScene transition:fade];
     }];
