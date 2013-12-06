@@ -66,6 +66,8 @@
 - (void)createSceneContents {
     textures = [SKTextureAtlas atlasNamed:@"MenuScene"];
     
+    [self openingTransition];
+    
     // Create Sky
     _skyBackground = [SKSpriteNode spriteNodeWithImageNamed:@"sky"];
     _skyBackground.position = CGPointMake(CGRectGetMidX(self.frame), self.size.height-(_skyBackground.size.height/2));
@@ -126,6 +128,43 @@
     [self addChild:_sourSnail];
     
     NSLog(@"%f", CHARACTER_SPACING);
+    
+}
+
+- (void)openingTransition {
+    // Set up sprites
+    SKSpriteNode *bottomTrash = [SKSpriteNode spriteNodeWithImageNamed:@"bottom"];
+    bottomTrash.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+    bottomTrash.zPosition = 30;
+    [self addChild:bottomTrash];
+    
+    SKSpriteNode *middleTrash = [SKSpriteNode spriteNodeWithImageNamed:@"middle"];
+    middleTrash.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+    middleTrash.zPosition = 29;
+    [self addChild:middleTrash];
+    
+//    SKSpriteNode *topTrash = [SKSpriteNode spriteNodeWithImageNamed:@"top"];
+//    topTrash.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+//    topTrash.zPosition = 28;
+//    [self addChild:topTrash];
+    
+    SKAction *moveDown = [SKAction moveToY:-self.size.height duration:0.5];
+    SKAction *remove = [SKAction removeFromParent];
+    
+    SKAction *sequence = [SKAction sequence:@[moveDown, remove]];
+    
+    
+    [middleTrash runAction:sequence completion:^{
+        [bottomTrash runAction:sequence];
+    }];
+
+    
+//    
+//    [topTrash runAction:sequence completion:^{
+//        [middleTrash runAction:sequence completion:^{
+//            [bottomTrash runAction:sequence];
+//        }];
+//    }];
     
 }
 

@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B5B65C31851543D0097EA91 /* EnterScene.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8B5B65C21851543D0097EA91 /* EnterScene.atlas */; };
+		8B5B65C71851640B0097EA91 /* bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5B65C41851640B0097EA91 /* bottom@2x.png */; };
+		8B5B65C81851640B0097EA91 /* middle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5B65C51851640B0097EA91 /* middle@2x.png */; };
+		8B5B65C91851640B0097EA91 /* top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5B65C61851640B0097EA91 /* top@2x.png */; };
 		8B79936C184D61AF007A5F0D /* SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B79936B184D61AF007A5F0D /* SplashScreen.m */; };
-		8B799373184D63D5007A5F0D /* EnterScene.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8B79936E184D63D5007A5F0D /* EnterScene.atlas */; };
 		8B799374184D63D5007A5F0D /* MenuScene.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8B79936F184D63D5007A5F0D /* MenuScene.atlas */; };
 		8B799375184D63D5007A5F0D /* RottenApple.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8B799370184D63D5007A5F0D /* RottenApple.atlas */; };
 		8B799376184D63D5007A5F0D /* SplashScreen.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8B799371184D63D5007A5F0D /* SplashScreen.atlas */; };
@@ -53,9 +56,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B5B65C21851543D0097EA91 /* EnterScene.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = EnterScene.atlas; path = Textures/EnterScene.atlas; sourceTree = "<group>"; };
+		8B5B65C41851640B0097EA91 /* bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottom@2x.png"; sourceTree = "<group>"; };
+		8B5B65C51851640B0097EA91 /* middle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "middle@2x.png"; sourceTree = "<group>"; };
+		8B5B65C61851640B0097EA91 /* top@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "top@2x.png"; sourceTree = "<group>"; };
 		8B79936A184D61AF007A5F0D /* SplashScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreen.h; sourceTree = "<group>"; };
 		8B79936B184D61AF007A5F0D /* SplashScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashScreen.m; sourceTree = "<group>"; };
-		8B79936E184D63D5007A5F0D /* EnterScene.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = EnterScene.atlas; path = Textures/EnterScene.atlas; sourceTree = "<group>"; };
 		8B79936F184D63D5007A5F0D /* MenuScene.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = MenuScene.atlas; path = Textures/MenuScene.atlas; sourceTree = "<group>"; };
 		8B799370184D63D5007A5F0D /* RottenApple.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = RottenApple.atlas; path = Textures/RottenApple.atlas; sourceTree = "<group>"; };
 		8B799371184D63D5007A5F0D /* SplashScreen.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = SplashScreen.atlas; path = Textures/SplashScreen.atlas; sourceTree = "<group>"; };
@@ -149,7 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				8B799381184D7A25007A5F0D /* Large Images */,
-				8B79936E184D63D5007A5F0D /* EnterScene.atlas */,
+				8B5B65C21851543D0097EA91 /* EnterScene.atlas */,
 				8B79936F184D63D5007A5F0D /* MenuScene.atlas */,
 				8B799370184D63D5007A5F0D /* RottenApple.atlas */,
 				8B799371184D63D5007A5F0D /* SplashScreen.atlas */,
@@ -162,6 +168,9 @@
 			isa = PBXGroup;
 			children = (
 				8B799397184D940F007A5F0D /* backtrash@2x.png */,
+				8B5B65C41851640B0097EA91 /* bottom@2x.png */,
+				8B5B65C51851640B0097EA91 /* middle@2x.png */,
+				8B5B65C61851640B0097EA91 /* top@2x.png */,
 				8B79938D184D90FA007A5F0D /* fenceline@2x.png */,
 				8B79938E184D90FA007A5F0D /* ground@2x.png */,
 				8B79938F184D90FA007A5F0D /* rubbish@2x.png */,
@@ -335,7 +344,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B5B65C81851640B0097EA91 /* middle@2x.png in Resources */,
 				8B799375184D63D5007A5F0D /* RottenApple.atlas in Resources */,
+				8B5B65C31851543D0097EA91 /* EnterScene.atlas in Resources */,
 				EFF5A43318430380000E2B06 /* InfoPlist.strings in Resources */,
 				8B799377184D63D5007A5F0D /* TrashRat.atlas in Resources */,
 				EFF5A44618430380000E2B06 /* Images.xcassets in Resources */,
@@ -343,13 +354,14 @@
 				EFF5A43C18430380000E2B06 /* Main.storyboard in Resources */,
 				8B799374184D63D5007A5F0D /* MenuScene.atlas in Resources */,
 				8B79939F184E48A4007A5F0D /* fireFly.sks in Resources */,
+				8B5B65C91851640B0097EA91 /* top@2x.png in Resources */,
 				8B799393184D90FA007A5F0D /* rubbish@2x.png in Resources */,
 				8B7993A2184E4CC8007A5F0D /* spark.sks in Resources */,
-				8B799373184D63D5007A5F0D /* EnterScene.atlas in Resources */,
 				8B7993A4184E4EDE007A5F0D /* dirt.png in Resources */,
 				8B7993A0184E48A4007A5F0D /* spark.png in Resources */,
 				8B799376184D63D5007A5F0D /* SplashScreen.atlas in Resources */,
 				8B799398184D940F007A5F0D /* backtrash@2x.png in Resources */,
+				8B5B65C71851640B0097EA91 /* bottom@2x.png in Resources */,
 				8B799396184D9406007A5F0D /* sky@2x.png in Resources */,
 				8B799392184D90FA007A5F0D /* ground@2x.png in Resources */,
 			);
