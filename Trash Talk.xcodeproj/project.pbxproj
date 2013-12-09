@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B0BA09D1855854700FFB843 /* trashrat_spray.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B0BA09C1855854700FFB843 /* trashrat_spray.png */; };
+		8B0BA0AB18558E2C00FFB843 /* bg.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8B0BA0A318558E2C00FFB843 /* bg.mp3 */; };
+		8B0BA0AC18558E2C00FFB843 /* binslide.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8B0BA0A418558E2C00FFB843 /* binslide.caf */; };
+		8B0BA0AD18558E2C00FFB843 /* POP.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8B0BA0A518558E2C00FFB843 /* POP.caf */; };
+		8B0BA0AE18558E2C00FFB843 /* red.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8B0BA0A618558E2C00FFB843 /* red.caf */; };
+		8B0BA0AF18558E2C00FFB843 /* scream1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8B0BA0A718558E2C00FFB843 /* scream1.caf */; };
+		8B0BA0B018558E2C00FFB843 /* scream2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8B0BA0A818558E2C00FFB843 /* scream2.caf */; };
+		8B0BA0B118558E2C00FFB843 /* splat.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8B0BA0A918558E2C00FFB843 /* splat.caf */; };
+		8B0BA0B218558E2C00FFB843 /* TinCanDrop.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8B0BA0AA18558E2C00FFB843 /* TinCanDrop.caf */; };
 		8B5B65C31851543D0097EA91 /* EnterScene.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8B5B65C21851543D0097EA91 /* EnterScene.atlas */; };
 		8B5B65C71851640B0097EA91 /* bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5B65C41851640B0097EA91 /* bottom@2x.png */; };
 		8B5B65C81851640B0097EA91 /* middle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5B65C51851640B0097EA91 /* middle@2x.png */; };
@@ -28,6 +37,12 @@
 		8B7993A0184E48A4007A5F0D /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B79939E184E48A4007A5F0D /* spark.png */; };
 		8B7993A2184E4CC8007A5F0D /* spark.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8B7993A1184E4CC8007A5F0D /* spark.sks */; };
 		8B7993A4184E4EDE007A5F0D /* dirt.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B7993A3184E4EDE007A5F0D /* dirt.png */; };
+		8BB2E0AB1854183A0025684F /* MouthScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BB2E0AA1854183A0025684F /* MouthScene.m */; };
+		8BB2E0AF185435220025684F /* ScumGum.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8BB2E0AD185435220025684F /* ScumGum.atlas */; };
+		8BB2E0B0185435220025684F /* SourSnail.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8BB2E0AE185435220025684F /* SourSnail.atlas */; };
+		8BB2E0B2185435960025684F /* BlowFly.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8BB2E0B1185435960025684F /* BlowFly.atlas */; };
+		8BB2E0B418553D1A0025684F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BB2E0B318553D1A0025684F /* AVFoundation.framework */; };
+		8BB2E0BA18557CF00025684F /* cheese.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8BB2E0B918557CF00025684F /* cheese.sks */; };
 		EFF5A42718430380000E2B06 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFF5A42618430380000E2B06 /* Foundation.framework */; };
 		EFF5A42918430380000E2B06 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFF5A42818430380000E2B06 /* CoreGraphics.framework */; };
 		EFF5A42B18430380000E2B06 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFF5A42A18430380000E2B06 /* UIKit.framework */; };
@@ -56,6 +71,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B0BA09C1855854700FFB843 /* trashrat_spray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trashrat_spray.png; sourceTree = "<group>"; };
+		8B0BA0A318558E2C00FFB843 /* bg.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bg.mp3; sourceTree = "<group>"; };
+		8B0BA0A418558E2C00FFB843 /* binslide.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = binslide.caf; sourceTree = "<group>"; };
+		8B0BA0A518558E2C00FFB843 /* POP.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = POP.caf; sourceTree = "<group>"; };
+		8B0BA0A618558E2C00FFB843 /* red.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = red.caf; sourceTree = "<group>"; };
+		8B0BA0A718558E2C00FFB843 /* scream1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = scream1.caf; sourceTree = "<group>"; };
+		8B0BA0A818558E2C00FFB843 /* scream2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = scream2.caf; sourceTree = "<group>"; };
+		8B0BA0A918558E2C00FFB843 /* splat.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = splat.caf; sourceTree = "<group>"; };
+		8B0BA0AA18558E2C00FFB843 /* TinCanDrop.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = TinCanDrop.caf; sourceTree = "<group>"; };
 		8B5B65C21851543D0097EA91 /* EnterScene.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = EnterScene.atlas; path = Textures/EnterScene.atlas; sourceTree = "<group>"; };
 		8B5B65C41851640B0097EA91 /* bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottom@2x.png"; sourceTree = "<group>"; };
 		8B5B65C51851640B0097EA91 /* middle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "middle@2x.png"; sourceTree = "<group>"; };
@@ -81,6 +105,13 @@
 		8B79939E184E48A4007A5F0D /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spark.png; path = Particles/spark.png; sourceTree = "<group>"; };
 		8B7993A1184E4CC8007A5F0D /* spark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = spark.sks; path = Particles/spark.sks; sourceTree = "<group>"; };
 		8B7993A3184E4EDE007A5F0D /* dirt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dirt.png; path = Particles/dirt.png; sourceTree = "<group>"; };
+		8BB2E0A91854183A0025684F /* MouthScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouthScene.h; sourceTree = "<group>"; };
+		8BB2E0AA1854183A0025684F /* MouthScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MouthScene.m; sourceTree = "<group>"; };
+		8BB2E0AD185435220025684F /* ScumGum.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = ScumGum.atlas; path = Textures/ScumGum.atlas; sourceTree = "<group>"; };
+		8BB2E0AE185435220025684F /* SourSnail.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = SourSnail.atlas; path = Textures/SourSnail.atlas; sourceTree = "<group>"; };
+		8BB2E0B1185435960025684F /* BlowFly.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = BlowFly.atlas; path = Textures/BlowFly.atlas; sourceTree = "<group>"; };
+		8BB2E0B318553D1A0025684F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		8BB2E0B918557CF00025684F /* cheese.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = cheese.sks; path = Particles/cheese.sks; sourceTree = "<group>"; };
 		EFF5A42318430380000E2B06 /* Trash Talk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trash Talk.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFF5A42618430380000E2B06 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EFF5A42818430380000E2B06 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -108,6 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BB2E0B418553D1A0025684F /* AVFoundation.framework in Frameworks */,
 				EFF5A42918430380000E2B06 /* CoreGraphics.framework in Frameworks */,
 				EFF5A42B18430380000E2B06 /* UIKit.framework in Frameworks */,
 				EFF5A42D18430380000E2B06 /* SpriteKit.framework in Frameworks */,
@@ -128,6 +160,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B0BA0A218558E2300FFB843 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				8B0BA0A318558E2C00FFB843 /* bg.mp3 */,
+				8B0BA0A418558E2C00FFB843 /* binslide.caf */,
+				8B0BA0A518558E2C00FFB843 /* POP.caf */,
+				8B0BA0A618558E2C00FFB843 /* red.caf */,
+				8B0BA0A718558E2C00FFB843 /* scream1.caf */,
+				8B0BA0A818558E2C00FFB843 /* scream2.caf */,
+				8B0BA0A918558E2C00FFB843 /* splat.caf */,
+				8B0BA0AA18558E2C00FFB843 /* TinCanDrop.caf */,
+			);
+			name = Audio;
+			sourceTree = "<group>";
+		};
 		8B799368184D61AF007A5F0D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +194,8 @@
 				8B79937C184D73BC007A5F0D /* MenuScene.m */,
 				8B799399184E2533007A5F0D /* CharacterSpriteNode.h */,
 				8B79939A184E2533007A5F0D /* CharacterSpriteNode.m */,
+				8BB2E0A91854183A0025684F /* MouthScene.h */,
+				8BB2E0AA1854183A0025684F /* MouthScene.m */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -154,12 +203,11 @@
 		8B79936D184D631B007A5F0D /* Textures */ = {
 			isa = PBXGroup;
 			children = (
+				8BB2E0AC185434870025684F /* Mouths */,
 				8B799381184D7A25007A5F0D /* Large Images */,
 				8B5B65C21851543D0097EA91 /* EnterScene.atlas */,
 				8B79936F184D63D5007A5F0D /* MenuScene.atlas */,
-				8B799370184D63D5007A5F0D /* RottenApple.atlas */,
 				8B799371184D63D5007A5F0D /* SplashScreen.atlas */,
-				8B799372184D63D5007A5F0D /* TrashRat.atlas */,
 			);
 			name = Textures;
 			sourceTree = "<group>";
@@ -183,12 +231,42 @@
 		8B79939C184E485A007A5F0D /* Particles */ = {
 			isa = PBXGroup;
 			children = (
+				8BB2E0B818557CD40025684F /* Mouth */,
+				8BB2E0B718557CCC0025684F /* Menu */,
+			);
+			name = Particles;
+			sourceTree = "<group>";
+		};
+		8BB2E0AC185434870025684F /* Mouths */ = {
+			isa = PBXGroup;
+			children = (
+				8BB2E0B1185435960025684F /* BlowFly.atlas */,
+				8B799370184D63D5007A5F0D /* RottenApple.atlas */,
+				8B799372184D63D5007A5F0D /* TrashRat.atlas */,
+				8BB2E0AD185435220025684F /* ScumGum.atlas */,
+				8BB2E0AE185435220025684F /* SourSnail.atlas */,
+			);
+			name = Mouths;
+			sourceTree = "<group>";
+		};
+		8BB2E0B718557CCC0025684F /* Menu */ = {
+			isa = PBXGroup;
+			children = (
 				8B7993A3184E4EDE007A5F0D /* dirt.png */,
 				8B79939D184E48A4007A5F0D /* fireFly.sks */,
 				8B79939E184E48A4007A5F0D /* spark.png */,
 				8B7993A1184E4CC8007A5F0D /* spark.sks */,
 			);
-			name = Particles;
+			name = Menu;
+			sourceTree = "<group>";
+		};
+		8BB2E0B818557CD40025684F /* Mouth */ = {
+			isa = PBXGroup;
+			children = (
+				8B0BA09C1855854700FFB843 /* trashrat_spray.png */,
+				8BB2E0B918557CF00025684F /* cheese.sks */,
+			);
+			name = Mouth;
 			sourceTree = "<group>";
 		};
 		EFF5A41A18430380000E2B06 = {
@@ -213,6 +291,7 @@
 		EFF5A42518430380000E2B06 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8BB2E0B318553D1A0025684F /* AVFoundation.framework */,
 				EFF5A42618430380000E2B06 /* Foundation.framework */,
 				EFF5A42818430380000E2B06 /* CoreGraphics.framework */,
 				EFF5A42A18430380000E2B06 /* UIKit.framework */,
@@ -225,6 +304,7 @@
 		EFF5A42E18430380000E2B06 /* Trash Talk */ = {
 			isa = PBXGroup;
 			children = (
+				8B0BA0A218558E2300FFB843 /* Audio */,
 				8B79939C184E485A007A5F0D /* Particles */,
 				8B79936D184D631B007A5F0D /* Textures */,
 				8B799368184D61AF007A5F0D /* Classes */,
@@ -345,24 +425,37 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B5B65C81851640B0097EA91 /* middle@2x.png in Resources */,
+				8BB2E0B2185435960025684F /* BlowFly.atlas in Resources */,
 				8B799375184D63D5007A5F0D /* RottenApple.atlas in Resources */,
 				8B5B65C31851543D0097EA91 /* EnterScene.atlas in Resources */,
 				EFF5A43318430380000E2B06 /* InfoPlist.strings in Resources */,
+				8B0BA0B118558E2C00FFB843 /* splat.caf in Resources */,
+				8B0BA0AC18558E2C00FFB843 /* binslide.caf in Resources */,
 				8B799377184D63D5007A5F0D /* TrashRat.atlas in Resources */,
 				EFF5A44618430380000E2B06 /* Images.xcassets in Resources */,
+				8BB2E0AF185435220025684F /* ScumGum.atlas in Resources */,
 				8B799391184D90FA007A5F0D /* fenceline@2x.png in Resources */,
 				EFF5A43C18430380000E2B06 /* Main.storyboard in Resources */,
 				8B799374184D63D5007A5F0D /* MenuScene.atlas in Resources */,
 				8B79939F184E48A4007A5F0D /* fireFly.sks in Resources */,
 				8B5B65C91851640B0097EA91 /* top@2x.png in Resources */,
+				8B0BA0AD18558E2C00FFB843 /* POP.caf in Resources */,
+				8B0BA0AB18558E2C00FFB843 /* bg.mp3 in Resources */,
+				8B0BA0B218558E2C00FFB843 /* TinCanDrop.caf in Resources */,
 				8B799393184D90FA007A5F0D /* rubbish@2x.png in Resources */,
 				8B7993A2184E4CC8007A5F0D /* spark.sks in Resources */,
+				8B0BA0AE18558E2C00FFB843 /* red.caf in Resources */,
 				8B7993A4184E4EDE007A5F0D /* dirt.png in Resources */,
 				8B7993A0184E48A4007A5F0D /* spark.png in Resources */,
 				8B799376184D63D5007A5F0D /* SplashScreen.atlas in Resources */,
 				8B799398184D940F007A5F0D /* backtrash@2x.png in Resources */,
 				8B5B65C71851640B0097EA91 /* bottom@2x.png in Resources */,
 				8B799396184D9406007A5F0D /* sky@2x.png in Resources */,
+				8B0BA0AF18558E2C00FFB843 /* scream1.caf in Resources */,
+				8B0BA09D1855854700FFB843 /* trashrat_spray.png in Resources */,
+				8BB2E0B0185435220025684F /* SourSnail.atlas in Resources */,
+				8BB2E0BA18557CF00025684F /* cheese.sks in Resources */,
+				8B0BA0B018558E2C00FFB843 /* scream2.caf in Resources */,
 				8B799392184D90FA007A5F0D /* ground@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -384,6 +477,7 @@
 			files = (
 				EFF5A43F18430380000E2B06 /* ViewController.m in Sources */,
 				EFF5A43918430380000E2B06 /* AppDelegate.m in Sources */,
+				8BB2E0AB1854183A0025684F /* MouthScene.m in Sources */,
 				8B79937A184D6F7D007A5F0D /* EnterScene.m in Sources */,
 				8B79939B184E2533007A5F0D /* CharacterSpriteNode.m in Sources */,
 				8B79937D184D73BC007A5F0D /* MenuScene.m in Sources */,

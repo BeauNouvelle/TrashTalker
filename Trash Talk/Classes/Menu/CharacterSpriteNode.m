@@ -9,14 +9,10 @@
 #import "CharacterSpriteNode.h"
 
 @interface CharacterSpriteNode ()
-
-@property (nonatomic, strong) NSString *textureName;
-
 @end
 
 @implementation CharacterSpriteNode {
     SKTextureAtlas *textures;
-    SKSpriteNode *trashCan;
 }
 
 - (id)initWithTextureNamed:(NSString *)texture {
@@ -30,17 +26,19 @@
 }
 
 - (void)setUp {
-    self.name = _textureName;
-    
     NSString *myParticlePath = [[NSBundle mainBundle] pathForResource:@"fireFly" ofType:@"sks"];
     SKEmitterNode *myParticle = [NSKeyedUnarchiver unarchiveObjectWithFile:myParticlePath];
     myParticle.position = CGPointMake(0, -40);
     
-    trashCan = [self createTrashcan];
+    // set up trashcan
+    _trashCan = [self createTrashcan];
+    
+    // setup character
     _character = [self createCharacter];
     _character.position = CGPointMake(self.frame.size.width/2, 50);
     
-    [self addChild:trashCan];
+    // add sprites to node
+    [self addChild:_trashCan];
     [self addChild:_character];
     [_character addChild:myParticle];
 }
@@ -82,8 +80,10 @@
 - (SKAction *)animationPopOut {
     NSString *myParticlePath = [[NSBundle mainBundle] pathForResource:@"spark" ofType:@"sks"];
     SKEmitterNode *myParticle = [NSKeyedUnarchiver unarchiveObjectWithFile:myParticlePath];
-    myParticle.position = CGPointMake(0, trashCan.size.height+50);
-    [trashCan addChild:myParticle];
+    myParticle.position = CGPointMake(0, _trashCan.size.height+50);
+    [_trashCan addChild:myParticle];
+    
+    [self runAction:[SKAction playSoundFileNamed:@"POP.caf" waitForCompletion:NO]];
     
     SKAction *moveCharacterUp = [SKAction moveToY:80 duration:0.1];
 
@@ -95,7 +95,5 @@
 
     return moveCharacterDown;
 }
-
-
 
 @end

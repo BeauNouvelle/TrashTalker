@@ -20,6 +20,7 @@
 
 #import "MenuScene.h"
 #import "CharacterSpriteNode.h"
+#import "MouthScene.h"
 
 @interface MenuScene ()
 
@@ -39,6 +40,9 @@
 @property (nonatomic, strong) CharacterSpriteNode *scumGum;
 @property (nonatomic, strong) CharacterSpriteNode *sourSnail;
 
+// Touch Zone, becuase touch recognizers aren't working on the character SKNode subclass... which is fucking stupid. Worked on my last project.
+@property (nonatomic, strong) SKSpriteNode *touchZone;
+
 @property (nonatomic, strong) UIPanGestureRecognizer *pan;
 
 @end
@@ -54,7 +58,6 @@
     if (!self.contentCreated) {
         screenPosition = 1;
         
-//        [self addPanGestureRecognizer];
         [self addSwipeRecognizerForDirection:UISwipeGestureRecognizerDirectionLeft];
         [self addSwipeRecognizerForDirection:UISwipeGestureRecognizerDirectionRight];
         
@@ -126,6 +129,13 @@
     _sourSnail.position = CGPointMake(_scumGum.position.x+CHARACTER_SPACING, _trashRat.position.y);
     _sourSnail.zPosition = 10;
     [self addChild:_sourSnail];
+    
+    // Create Touch Zone
+    _touchZone = [SKSpriteNode spriteNodeWithColor:[UIColor clearColor] size:(CGSizeMake(120, 190))];
+    _touchZone.position = CGPointMake(CGRectGetMidX(self.frame)+10, CGRectGetMidY(self.frame)*0.8);
+    _touchZone.zPosition = 20;
+    _touchZone.name = @"touchZone";
+    [self addChild:_touchZone];
     
     NSLog(@"%f", CHARACTER_SPACING);
     
@@ -205,14 +215,6 @@
     return rubbish;
 }
 
-- (void)addPanGestureRecognizer {
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(dragScene:)];
-    pan.minimumNumberOfTouches = 1;
-    pan.delegate = self;
-    [self.view addGestureRecognizer:pan];
-    
-}
-
 - (void)addSwipeRecognizerForDirection:(UISwipeGestureRecognizerDirection)direction {
     // Create a swipe recognizer for the wanted direction
     UISwipeGestureRecognizer *swipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(isSwiped:)];
@@ -225,7 +227,8 @@
     
     if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
         if (screenPosition < 5) {
-            
+            [self runAction:[SKAction playSoundFileNamed:@"binslide.caf" waitForCompletion:NO]];
+
             [self popCharactersIn];
             
             SKAction *moveSky = [SKAction moveByX:-MOVE_BY_DISTANCE*SKY_SCROLL_SPEED y:0 duration:WITH_DURATION];
@@ -269,7 +272,8 @@
     }
     else if (recognizer.direction == UISwipeGestureRecognizerDirectionRight) {
         if (screenPosition > 1) {
-            
+            [self runAction:[SKAction playSoundFileNamed:@"binslide.caf" waitForCompletion:NO]];
+
             [self popCharactersIn];
             
             SKAction *moveSky = [SKAction moveByX:MOVE_BY_DISTANCE*SKY_SCROLL_SPEED y:0 duration:WITH_DURATION];
@@ -326,64 +330,53 @@
     return YES;
 }
 
-- (void)dragScene:(UIPanGestureRecognizer *)gesture {
-    
-    CGPoint trans = [gesture translationInView:self.view];
-    
-    SKAction *moveSky = [SKAction moveByX:trans.x*SKY_SCROLL_SPEED y:0 duration:0];
-    SKAction *moveBacktrash = [SKAction moveByX:trans.x*BACK_TRASH_SCROLL_SPEED y:0 duration:0];
-    SKAction *moveFence = [SKAction moveByX:trans.x*FENCE_SCROLL_SPEED y:0 duration:0];
-    SKAction *moveRubbish = [SKAction moveByX:trans.x*RUBBISH_SCROLL_SPEED y:0 duration:0];
-    SKAction *moveGround = [SKAction moveByX:trans.x*GROUND_SCROLL_SPEED y:0 duration:0];
-    
-    //    SKAction *moveCharacter = [SKAction moveByX:trans.x y:0 duration:0];
-    
-    [_skyBackground runAction:moveSky];
-    [_backtrashBackground runAction:moveBacktrash];
-    [_fenceBackground runAction:moveFence];
-    [_trashBackground runAction:moveRubbish];
-    [_groundBackground runAction:moveGround];
-    
-    // Scroll conveyor sprite
-    if (_groundBackground.position.x < -_groundBackground.size.width){
-        _groundBackground.position = CGPointMake(_groundBackground.position.x + _groundBackground.size.width, _groundBackground.position.y);
-    }
-    
-    
-    if (_trashBackground.position.x <= -_trashBackground.size.width*.25) {
-        NSLog(@"Background is less than width");
-        SKSpriteNode *newBackground = _trashBackground;
-        newBackground.position = CGPointMake(_trashBackground.position.x + newBackground.size.width * 2, newBackground.position.y);
-    }
-    
-    [gesture setTranslation:CGPointMake(0, 0) inView:self.view];
-}
-
 #pragma mark - Touch Event Listeners
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [touches anyObject];
     CGPoint positionInScene = [touch locationInNode:self];
-
-    SKNode *node = [self nodeAtPoint:positionInScene];
     
-    if (node == _trashRat) {
-        NSLog(@"Works");
+    SKNode *touchedNode = (SKNode *)[self nodeAtPoint:positionInScene];
+    
+    if ([touchedNode.name isEqualToString:@"touchZone"]) {
+        NSLog(@"Sprite name %@", touchedNode.name);
+        if (screenPosition == 1) {
+            [self runAction:[SKAction playSoundFileNamed:@"scream1.caf" waitForCompletion:NO]];
+            [self goToNextSceneWithTextureAtlasNamed:@"TrashRat"];
+        }
+        if (screenPosition == 2) {
+            [self goToNextSceneWithTextureAtlasNamed:@"RottenApple"];
+        }
+        if (screenPosition == 3) {
+            [self goToNextSceneWithTextureAtlasNamed:@"BlowFly"];
+        }
+        if (screenPosition == 4) {
+            [self goToNextSceneWithTextureAtlasNamed:@"ScumGum"];
+        }
+        if (screenPosition == 5) {
+            [self goToNextSceneWithTextureAtlasNamed:@"SourSnail"];
+        }
     }
 }
 
 
-//#pragma mark - Update Method
-//- (void)update:(NSTimeInterval)currentTime {
-//    // Scroll conveyor sprite
-//    if (_trashBackground.position.x < -_trashBackground.size.width){
-//        _trashBackground.position = CGPointMake(_trashBackground.position.x + _trashBackground.size.width, _trashBackground.position.y);
-//    }
-//}
+#pragma mark - Update Method
+- (void)update:(NSTimeInterval)currentTime {
 
-//-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//    UITouch *touch = [touches anyObject];
-//    CGPoint positionInScene = [touch locationInNode:self];
-//    [self selectNodeForTouch:positionInScene];
-//}
+}
+
+#pragma mark - Navigation
+- (void)goToNextSceneWithTextureAtlasNamed:(NSString *)textureAtlasName {
+    MouthScene *mouthScene = [[MouthScene alloc] initWithSize:self.size];
+    SKTransition *cross = [SKTransition crossFadeWithDuration:0.3];
+    
+    [self runAction:[SKAction playSoundFileNamed:@"scream1.caf" waitForCompletion:NO]];
+
+    mouthScene.textureAtlasName = textureAtlasName;
+    [self.view presentScene:mouthScene transition:cross];
+}
+
 
 @end

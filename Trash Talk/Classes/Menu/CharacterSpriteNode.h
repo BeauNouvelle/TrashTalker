@@ -8,9 +8,14 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface CharacterSpriteNode : SKNode
+@interface CharacterSpriteNode : SKSpriteNode
 
 @property (strong, nonatomic) SKSpriteNode *character;
+@property (strong, nonatomic) SKSpriteNode *trashCan;
+
+@property (nonatomic, strong) NSString *textureName;
+
+@property BOOL wasTapped;
 
 - (id)initWithTextureNamed:(NSString *)texture;
 

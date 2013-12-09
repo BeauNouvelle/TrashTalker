@@ -31,6 +31,7 @@
     textures = [SKTextureAtlas atlasNamed:@"SplashScreen"];
     
     [self addChild:[self backgroundImage]];
+//    [self runAction:[SKAction playSoundFileNamed:@"bg.mp3" waitForCompletion:NO]];
     
     SKAction *wait = [SKAction waitForDuration:2];
     
