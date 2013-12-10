@@ -96,4 +96,10 @@
     return moveCharacterDown;
 }
 
+- (SKAction *)moveUpOutOfScene {
+    SKAction *moveOutOfScene = [SKAction moveToY:320+self.size.height duration:0.2];
+    
+    return moveOutOfScene;
+}
+
 @end

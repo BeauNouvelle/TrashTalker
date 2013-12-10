@@ -21,6 +21,7 @@
 #import "MenuScene.h"
 #import "CharacterSpriteNode.h"
 #import "MouthScene.h"
+#import "AppDelegate.h"
 
 @interface MenuScene ()
 
@@ -40,23 +41,25 @@
 @property (nonatomic, strong) CharacterSpriteNode *scumGum;
 @property (nonatomic, strong) CharacterSpriteNode *sourSnail;
 
-// Touch Zone, becuase touch recognizers aren't working on the character SKNode subclass... which is fucking stupid. Worked on my last project.
+// Touch Zone, becuase for some stupid reason the sknode/skspritenode subclass of the characters wont detect touches.
 @property (nonatomic, strong) SKSpriteNode *touchZone;
-
-@property (nonatomic, strong) UIPanGestureRecognizer *pan;
 
 @end
 
 @implementation MenuScene {
     SKTextureAtlas *textures;
     NSArray *characterArray;
-    int screenPosition;
     
+    int screenPosition;
 }
 
 - (void)didMoveToView:(SKView *)view {
     if (!self.contentCreated) {
         screenPosition = 1;
+        
+        // start playing menu music
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        [appDelegate.redMusic play];
         
         [self addSwipeRecognizerForDirection:UISwipeGestureRecognizerDirectionLeft];
         [self addSwipeRecognizerForDirection:UISwipeGestureRecognizerDirectionRight];
@@ -68,8 +71,6 @@
 
 - (void)createSceneContents {
     textures = [SKTextureAtlas atlasNamed:@"MenuScene"];
-    
-    [self openingTransition];
     
     // Create Sky
     _skyBackground = [SKSpriteNode spriteNodeWithImageNamed:@"sky"];
@@ -107,7 +108,7 @@
     _trashRat = [[CharacterSpriteNode alloc] initWithTextureNamed:@"trashrat"];
     _trashRat.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame)*0.6);
     _trashRat.zPosition = 10;
-    [_trashRat.character runAction:[_trashRat animationPopOut]];
+    _trashRat.character.position = CGPointMake(_trashRat.character.position.x, 80);
     [self addChild:_trashRat];
     
     _rottenApple = [[CharacterSpriteNode alloc] initWithTextureNamed:@"rottenapple"];
@@ -136,46 +137,6 @@
     _touchZone.zPosition = 20;
     _touchZone.name = @"touchZone";
     [self addChild:_touchZone];
-    
-    NSLog(@"%f", CHARACTER_SPACING);
-    
-}
-
-- (void)openingTransition {
-    // Set up sprites
-    SKSpriteNode *bottomTrash = [SKSpriteNode spriteNodeWithImageNamed:@"bottom"];
-    bottomTrash.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
-    bottomTrash.zPosition = 30;
-    [self addChild:bottomTrash];
-    
-    SKSpriteNode *middleTrash = [SKSpriteNode spriteNodeWithImageNamed:@"middle"];
-    middleTrash.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
-    middleTrash.zPosition = 29;
-    [self addChild:middleTrash];
-    
-//    SKSpriteNode *topTrash = [SKSpriteNode spriteNodeWithImageNamed:@"top"];
-//    topTrash.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
-//    topTrash.zPosition = 28;
-//    [self addChild:topTrash];
-    
-    SKAction *moveDown = [SKAction moveToY:-self.size.height duration:0.5];
-    SKAction *remove = [SKAction removeFromParent];
-    
-    SKAction *sequence = [SKAction sequence:@[moveDown, remove]];
-    
-    
-    [middleTrash runAction:sequence completion:^{
-        [bottomTrash runAction:sequence];
-    }];
-
-    
-//    
-//    [topTrash runAction:sequence completion:^{
-//        [middleTrash runAction:sequence completion:^{
-//            [bottomTrash runAction:sequence];
-//        }];
-//    }];
-    
 }
 
 - (SKSpriteNode *)createGroundSprite {
@@ -215,6 +176,7 @@
     return rubbish;
 }
 
+#pragma mark - Swipe Gestures
 - (void)addSwipeRecognizerForDirection:(UISwipeGestureRecognizerDirection)direction {
     // Create a swipe recognizer for the wanted direction
     UISwipeGestureRecognizer *swipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(isSwiped:)];
@@ -222,7 +184,6 @@
     [self.view addGestureRecognizer:swipeRecognizer];
 }
 
-#pragma mark - Swipe Gesture
 - (void)isSwiped:(UISwipeGestureRecognizer *)recognizer {
     
     if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
@@ -246,26 +207,39 @@
             [_groundBackground runAction:moveGround];
             
             [_trashRat runAction:moveCharacter completion:^{
-                [_trashRat runAction:[_trashRat animateWiggle]];
-                [_trashRat.character runAction:[_trashRat animationPopOut]];
-            }];
-            [_rottenApple runAction:moveCharacter completion:^{
-                [_rottenApple runAction:[_rottenApple animateWiggle]];
-                [_rottenApple.character runAction:[_rottenApple animationPopOut]];
-            }];
-            [_blowFly runAction:moveCharacter completion:^{
-                [_blowFly runAction:[_blowFly animateWiggle]];
-                [_blowFly.character runAction:[_blowFly animationPopOut]];
-            }];
-            [_scumGum runAction:moveCharacter completion:^{
-                [_scumGum runAction:[_scumGum animateWiggle]];
-                [_scumGum.character runAction:[_scumGum animationPopOut]];
-            }];
-            [_sourSnail runAction:moveCharacter completion:^{
-                [_sourSnail runAction:[_sourSnail animateWiggle]];
-                [_sourSnail.character runAction:[_sourSnail animationPopOut]];
+                if (screenPosition == 1) {
+                    [_trashRat runAction:[_trashRat animateWiggle]];
+                    [_trashRat.character runAction:[_trashRat animationPopOut]];
+                }
             }];
             
+            [_rottenApple runAction:moveCharacter completion:^{
+                if (screenPosition == 2) {
+                    [_rottenApple runAction:[_rottenApple animateWiggle]];
+                    [_rottenApple.character runAction:[_rottenApple animationPopOut]];
+                }
+            }];
+            
+            [_blowFly runAction:moveCharacter completion:^{
+                if (screenPosition == 3) {
+                    [_blowFly runAction:[_blowFly animateWiggle]];
+                    [_blowFly.character runAction:[_blowFly animationPopOut]];
+                }
+            }];
+            
+            [_scumGum runAction:moveCharacter completion:^{
+                if (screenPosition == 4) {
+                    [_scumGum runAction:[_scumGum animateWiggle]];
+                    [_scumGum.character runAction:[_scumGum animationPopOut]];
+                }
+            }];
+            
+            [_sourSnail runAction:moveCharacter completion:^{
+                if (screenPosition == 5) {
+                    [_sourSnail runAction:[_sourSnail animateWiggle]];
+                    [_sourSnail.character runAction:[_sourSnail animationPopOut]];
+                }
+            }];
 
             screenPosition++;
         }
@@ -291,24 +265,37 @@
             [_groundBackground runAction:moveGround];
             
             [_trashRat runAction:moveCharacter completion:^{
-                [_trashRat runAction:[_trashRat animateWiggle]];
-                [_trashRat.character runAction:[_trashRat animationPopOut]];
+                if (screenPosition == 1) {
+                    [_trashRat runAction:[_trashRat animateWiggle]];
+                    [_trashRat.character runAction:[_trashRat animationPopOut]];
+                }
             }];
+            
             [_rottenApple runAction:moveCharacter completion:^{
-                [_rottenApple runAction:[_rottenApple animateWiggle]];
-                [_rottenApple.character runAction:[_rottenApple animationPopOut]];
+                if (screenPosition == 2) {
+                    [_rottenApple runAction:[_rottenApple animateWiggle]];
+                    [_rottenApple.character runAction:[_rottenApple animationPopOut]];
+                }
             }];
+            
             [_blowFly runAction:moveCharacter completion:^{
-                [_blowFly runAction:[_blowFly animateWiggle]];
-                [_blowFly.character runAction:[_blowFly animationPopOut]];
+                if (screenPosition == 3) {
+                    [_blowFly runAction:[_blowFly animateWiggle]];
+                    [_blowFly.character runAction:[_blowFly animationPopOut]];
+                }
             }];
+            
             [_scumGum runAction:moveCharacter completion:^{
-                [_scumGum runAction:[_scumGum animateWiggle]];
-                [_scumGum.character runAction:[_scumGum animationPopOut]];
+                if (screenPosition == 4) {
+                    [_scumGum runAction:[_scumGum animateWiggle]];
+                    [_scumGum.character runAction:[_scumGum animationPopOut]];
+                }
             }];
             [_sourSnail runAction:moveCharacter completion:^{
-                [_sourSnail runAction:[_sourSnail animateWiggle]];
-                [_sourSnail.character runAction:[_sourSnail animationPopOut]];
+                if (screenPosition == 5) {
+                    [_sourSnail runAction:[_sourSnail animateWiggle]];
+                    [_sourSnail.character runAction:[_sourSnail animationPopOut]];
+                }
             }];
             
             screenPosition--;
@@ -319,11 +306,11 @@
 
 #pragma mark - Methods for character animations
 - (void)popCharactersIn {
-    [_trashRat.character runAction:[_trashRat animatePopIn]];
-    [_rottenApple.character runAction:[_rottenApple animatePopIn]];
-    [_blowFly.character runAction:[_blowFly animatePopIn]];
-    [_scumGum.character runAction:[_scumGum animatePopIn]];
-    [_sourSnail.character runAction:[_sourSnail animatePopIn]];
+    if (screenPosition == 1) [_trashRat.character runAction:[_trashRat animatePopIn]];
+    if (screenPosition == 2) [_rottenApple.character runAction:[_rottenApple animatePopIn]];
+    if (screenPosition == 3) [_blowFly.character runAction:[_blowFly animatePopIn]];
+    if (screenPosition == 4) [_scumGum.character runAction:[_scumGum animatePopIn]];
+    if (screenPosition == 5) [_sourSnail.character runAction:[_sourSnail animatePopIn]];
 }
 
 - (BOOL)gestureRecognizer:(UIPanGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UISwipeGestureRecognizer *)otherGestureRecognizer {
@@ -331,9 +318,6 @@
 }
 
 #pragma mark - Touch Event Listeners
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-}
-
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     UITouch *touch = [touches anyObject];
     CGPoint positionInScene = [touch locationInNode:self];
@@ -341,41 +325,76 @@
     SKNode *touchedNode = (SKNode *)[self nodeAtPoint:positionInScene];
     
     if ([touchedNode.name isEqualToString:@"touchZone"]) {
+        
         NSLog(@"Sprite name %@", touchedNode.name);
         if (screenPosition == 1) {
             [self runAction:[SKAction playSoundFileNamed:@"scream1.caf" waitForCompletion:NO]];
-            [self goToNextSceneWithTextureAtlasNamed:@"TrashRat"];
+            [_trashRat.character runAction:[_trashRat moveUpOutOfScene] completion:^{
+                [self goToNextSceneWithTextureAtlasNamed:@"TrashRat"];
+            }];
         }
         if (screenPosition == 2) {
-            [self goToNextSceneWithTextureAtlasNamed:@"RottenApple"];
+            [self runAction:[SKAction playSoundFileNamed:@"scream2.caf" waitForCompletion:NO]];
+            [_rottenApple.character runAction:[_rottenApple moveUpOutOfScene] completion:^{
+                [self goToNextSceneWithTextureAtlasNamed:@"RottenApple"];
+            }];
         }
         if (screenPosition == 3) {
-            [self goToNextSceneWithTextureAtlasNamed:@"BlowFly"];
+            [self runAction:[SKAction playSoundFileNamed:@"scream1.caf" waitForCompletion:NO]];
+            [_blowFly.character runAction:[_blowFly moveUpOutOfScene] completion:^{
+                [self goToNextSceneWithTextureAtlasNamed:@"BlowFly"];
+
+            }];
         }
         if (screenPosition == 4) {
-            [self goToNextSceneWithTextureAtlasNamed:@"ScumGum"];
+            [self runAction:[SKAction playSoundFileNamed:@"scream2.caf" waitForCompletion:NO]];
+            [_scumGum.character runAction:[_scumGum moveUpOutOfScene] completion:^{
+                [self goToNextSceneWithTextureAtlasNamed:@"ScumGum"];
+            }];
         }
         if (screenPosition == 5) {
-            [self goToNextSceneWithTextureAtlasNamed:@"SourSnail"];
+            [self runAction:[SKAction playSoundFileNamed:@"scream1.caf" waitForCompletion:NO]];
+            [_sourSnail.character runAction:[_scumGum moveUpOutOfScene] completion:^{
+                [self goToNextSceneWithTextureAtlasNamed:@"SourSnail"];
+            }];
         }
     }
-}
-
-
-#pragma mark - Update Method
-- (void)update:(NSTimeInterval)currentTime {
-
 }
 
 #pragma mark - Navigation
 - (void)goToNextSceneWithTextureAtlasNamed:(NSString *)textureAtlasName {
     MouthScene *mouthScene = [[MouthScene alloc] initWithSize:self.size];
-    SKTransition *cross = [SKTransition crossFadeWithDuration:0.3];
+    SKTransition *cross = [SKTransition moveInWithDirection:SKTransitionDirectionUp duration:.8];
     
-    [self runAction:[SKAction playSoundFileNamed:@"scream1.caf" waitForCompletion:NO]];
-
     mouthScene.textureAtlasName = textureAtlasName;
+    
+    // remove gesture recognizers. Otherwise they will persist in next screen and crash the app
+    for (UIGestureRecognizer *recognizer in self.view.gestureRecognizers) {
+        [self.view removeGestureRecognizer:recognizer];
+    }
+    
+    // Stop menu music from playing
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate.redMusic stop];
+    
     [self.view presentScene:mouthScene transition:cross];
+}
+
+-(void)doVolumeFade {
+    
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate.redMusic stop];
+    
+    if (appDelegate.redMusic.volume > 0.1) {
+        appDelegate.redMusic.volume = appDelegate.bgMusic.volume - 0.1;
+        [self performSelector:@selector(doVolumeFade) withObject:nil afterDelay:0.5];
+    } else {
+        // Stop and get the sound ready for playing again
+        [appDelegate.redMusic stop];
+        appDelegate.redMusic.currentTime = 0;
+        [appDelegate.redMusic prepareToPlay];
+        appDelegate.redMusic.volume = 1.0;
+    }
 }
 
 

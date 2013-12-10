@@ -22,5 +22,6 @@
 - (SKAction *)animateWiggle;
 - (SKAction *)animationPopOut;
 - (SKAction *)animatePopIn;
+- (SKAction *)moveUpOutOfScene;
 
 @end

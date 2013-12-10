@@ -9,6 +9,7 @@
 #import "SplashScreen.h"
 #import "EnterScene.h"
 #import "MenuScene.h"
+#import "AppDelegate.h"
 
 @interface SplashScreen ()
 
@@ -22,6 +23,11 @@
 
 - (void)didMoveToView:(SKView *)view {
     if (!self.contentCreated) {
+        
+        // start playback of intro music
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        [appDelegate.bgMusic play];
+        
         [self createSceneContents];
         self.contentCreated = YES;
     }

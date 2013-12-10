@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8B0BA09D1855854700FFB843 /* trashrat_spray.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B0BA09C1855854700FFB843 /* trashrat_spray.png */; };
 		8B0BA0AB18558E2C00FFB843 /* bg.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8B0BA0A318558E2C00FFB843 /* bg.mp3 */; };
 		8B0BA0AC18558E2C00FFB843 /* binslide.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8B0BA0A418558E2C00FFB843 /* binslide.caf */; };
 		8B0BA0AD18558E2C00FFB843 /* POP.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8B0BA0A518558E2C00FFB843 /* POP.caf */; };
@@ -37,6 +36,12 @@
 		8B7993A0184E48A4007A5F0D /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B79939E184E48A4007A5F0D /* spark.png */; };
 		8B7993A2184E4CC8007A5F0D /* spark.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8B7993A1184E4CC8007A5F0D /* spark.sks */; };
 		8B7993A4184E4EDE007A5F0D /* dirt.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B7993A3184E4EDE007A5F0D /* dirt.png */; };
+		8BAAE9AE1856AEDD0032AC81 /* initialBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BAAE9AD1856AEDD0032AC81 /* initialBG@2x.png */; };
+		8BAAE9B01856BD6A0032AC81 /* TrashRat.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BAAE9AF1856BD6A0032AC81 /* TrashRat.png */; };
+		8BAAE9B21856C41D0032AC81 /* BlowFly.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BAAE9B11856C41D0032AC81 /* BlowFly.png */; };
+		8BAAE9B41856C4230032AC81 /* RottenApple.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BAAE9B31856C4230032AC81 /* RottenApple.png */; };
+		8BAAE9B61856C42E0032AC81 /* SourSnail.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BAAE9B51856C42E0032AC81 /* SourSnail.png */; };
+		8BAAE9B81856C46A0032AC81 /* ScumGum.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BAAE9B71856C46A0032AC81 /* ScumGum.png */; };
 		8BB2E0AB1854183A0025684F /* MouthScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BB2E0AA1854183A0025684F /* MouthScene.m */; };
 		8BB2E0AF185435220025684F /* ScumGum.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8BB2E0AD185435220025684F /* ScumGum.atlas */; };
 		8BB2E0B0185435220025684F /* SourSnail.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8BB2E0AE185435220025684F /* SourSnail.atlas */; };
@@ -71,7 +76,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8B0BA09C1855854700FFB843 /* trashrat_spray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trashrat_spray.png; sourceTree = "<group>"; };
 		8B0BA0A318558E2C00FFB843 /* bg.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bg.mp3; sourceTree = "<group>"; };
 		8B0BA0A418558E2C00FFB843 /* binslide.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = binslide.caf; sourceTree = "<group>"; };
 		8B0BA0A518558E2C00FFB843 /* POP.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = POP.caf; sourceTree = "<group>"; };
@@ -105,6 +109,12 @@
 		8B79939E184E48A4007A5F0D /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spark.png; path = Particles/spark.png; sourceTree = "<group>"; };
 		8B7993A1184E4CC8007A5F0D /* spark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = spark.sks; path = Particles/spark.sks; sourceTree = "<group>"; };
 		8B7993A3184E4EDE007A5F0D /* dirt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dirt.png; path = Particles/dirt.png; sourceTree = "<group>"; };
+		8BAAE9AD1856AEDD0032AC81 /* initialBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "initialBG@2x.png"; sourceTree = "<group>"; };
+		8BAAE9AF1856BD6A0032AC81 /* TrashRat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrashRat.png; sourceTree = "<group>"; };
+		8BAAE9B11856C41D0032AC81 /* BlowFly.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlowFly.png; sourceTree = "<group>"; };
+		8BAAE9B31856C4230032AC81 /* RottenApple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RottenApple.png; sourceTree = "<group>"; };
+		8BAAE9B51856C42E0032AC81 /* SourSnail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SourSnail.png; sourceTree = "<group>"; };
+		8BAAE9B71856C46A0032AC81 /* ScumGum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ScumGum.png; sourceTree = "<group>"; };
 		8BB2E0A91854183A0025684F /* MouthScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouthScene.h; sourceTree = "<group>"; };
 		8BB2E0AA1854183A0025684F /* MouthScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MouthScene.m; sourceTree = "<group>"; };
 		8BB2E0AD185435220025684F /* ScumGum.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = ScumGum.atlas; path = Textures/ScumGum.atlas; sourceTree = "<group>"; };
@@ -215,6 +225,7 @@
 		8B799381184D7A25007A5F0D /* Large Images */ = {
 			isa = PBXGroup;
 			children = (
+				8BAAE9AD1856AEDD0032AC81 /* initialBG@2x.png */,
 				8B799397184D940F007A5F0D /* backtrash@2x.png */,
 				8B5B65C41851640B0097EA91 /* bottom@2x.png */,
 				8B5B65C51851640B0097EA91 /* middle@2x.png */,
@@ -263,7 +274,11 @@
 		8BB2E0B818557CD40025684F /* Mouth */ = {
 			isa = PBXGroup;
 			children = (
-				8B0BA09C1855854700FFB843 /* trashrat_spray.png */,
+				8BAAE9B71856C46A0032AC81 /* ScumGum.png */,
+				8BAAE9B51856C42E0032AC81 /* SourSnail.png */,
+				8BAAE9B31856C4230032AC81 /* RottenApple.png */,
+				8BAAE9B11856C41D0032AC81 /* BlowFly.png */,
+				8BAAE9AF1856BD6A0032AC81 /* TrashRat.png */,
 				8BB2E0B918557CF00025684F /* cheese.sks */,
 			);
 			name = Mouth;
@@ -429,16 +444,19 @@
 				8B799375184D63D5007A5F0D /* RottenApple.atlas in Resources */,
 				8B5B65C31851543D0097EA91 /* EnterScene.atlas in Resources */,
 				EFF5A43318430380000E2B06 /* InfoPlist.strings in Resources */,
+				8BAAE9B61856C42E0032AC81 /* SourSnail.png in Resources */,
 				8B0BA0B118558E2C00FFB843 /* splat.caf in Resources */,
 				8B0BA0AC18558E2C00FFB843 /* binslide.caf in Resources */,
 				8B799377184D63D5007A5F0D /* TrashRat.atlas in Resources */,
 				EFF5A44618430380000E2B06 /* Images.xcassets in Resources */,
 				8BB2E0AF185435220025684F /* ScumGum.atlas in Resources */,
+				8BAAE9B01856BD6A0032AC81 /* TrashRat.png in Resources */,
 				8B799391184D90FA007A5F0D /* fenceline@2x.png in Resources */,
 				EFF5A43C18430380000E2B06 /* Main.storyboard in Resources */,
 				8B799374184D63D5007A5F0D /* MenuScene.atlas in Resources */,
 				8B79939F184E48A4007A5F0D /* fireFly.sks in Resources */,
 				8B5B65C91851640B0097EA91 /* top@2x.png in Resources */,
+				8BAAE9B41856C4230032AC81 /* RottenApple.png in Resources */,
 				8B0BA0AD18558E2C00FFB843 /* POP.caf in Resources */,
 				8B0BA0AB18558E2C00FFB843 /* bg.mp3 in Resources */,
 				8B0BA0B218558E2C00FFB843 /* TinCanDrop.caf in Resources */,
@@ -449,12 +467,14 @@
 				8B7993A0184E48A4007A5F0D /* spark.png in Resources */,
 				8B799376184D63D5007A5F0D /* SplashScreen.atlas in Resources */,
 				8B799398184D940F007A5F0D /* backtrash@2x.png in Resources */,
+				8BAAE9B21856C41D0032AC81 /* BlowFly.png in Resources */,
 				8B5B65C71851640B0097EA91 /* bottom@2x.png in Resources */,
 				8B799396184D9406007A5F0D /* sky@2x.png in Resources */,
 				8B0BA0AF18558E2C00FFB843 /* scream1.caf in Resources */,
-				8B0BA09D1855854700FFB843 /* trashrat_spray.png in Resources */,
+				8BAAE9AE1856AEDD0032AC81 /* initialBG@2x.png in Resources */,
 				8BB2E0B0185435220025684F /* SourSnail.atlas in Resources */,
 				8BB2E0BA18557CF00025684F /* cheese.sks in Resources */,
+				8BAAE9B81856C46A0032AC81 /* ScumGum.png in Resources */,
 				8B0BA0B018558E2C00FFB843 /* scream2.caf in Resources */,
 				8B799392184D90FA007A5F0D /* ground@2x.png in Resources */,
 			);
@@ -608,7 +628,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Trash Talk/Trash Talk-Prefix.pch";
 				INFOPLIST_FILE = "Trash Talk/Trash Talk-Info.plist";
@@ -622,7 +642,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Trash Talk/Trash Talk-Prefix.pch";
 				INFOPLIST_FILE = "Trash Talk/Trash Talk-Info.plist";

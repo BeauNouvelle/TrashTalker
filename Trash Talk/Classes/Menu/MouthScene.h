@@ -10,7 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <CoreAudio/CoreAudioTypes.h>
 
-@interface MouthScene : SKScene {
+@interface MouthScene : SKScene <UIGestureRecognizerDelegate> {
     AVAudioRecorder *recorder;
     double volumeLevel;
 }

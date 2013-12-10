@@ -8,6 +8,7 @@
 
 #import "EnterScene.h"
 #import "MenuScene.h"
+#import "AppDelegate.h"
 
 #define FOLLOW_PATH_SPEED 1.5
 #define IS_WIDESCREEN ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
@@ -26,6 +27,9 @@
     int delayForFlyingTrash;  // When set to 1, flying trash starts.
     
     BOOL goingToNextScene;
+    
+    SKSpriteNode *bottomTrash;
+    SKSpriteNode *middleTrash;
 }
 
 - (void)didMoveToView:(SKView *)view {
@@ -112,6 +116,16 @@
     [flyingRubbishArray addObject:apple];
     [self addChild:apple];
     
+    
+    // prepare transition sprites
+    bottomTrash = [SKSpriteNode spriteNodeWithImageNamed:@"bottom"];
+    bottomTrash.position = CGPointMake(CGRectGetMidX(self.frame), -bottomTrash.size.height);
+    bottomTrash.zPosition = 30;
+    
+    middleTrash = [SKSpriteNode spriteNodeWithImageNamed:@"middle"];
+    middleTrash.position = CGPointMake(CGRectGetMidX(self.frame), -middleTrash.size.height);
+    middleTrash.zPosition = 29;
+    
 }
 
 #pragma mark - Touch Recognisers
@@ -128,50 +142,59 @@
         SKAction *moveSequence = [SKAction sequence:@[fadeAway, remove]];
         [node runAction:moveSequence completion:^{
             goingToNextScene = YES;
+            
             [self moveUpTrash];
         }];
     }
 }
 
 - (void)moveUpTrash {
-    // prepare actions for sprites
-    //    SKAction *shakeRight = [SKAction moveToX:CGRectGetMidX(self.frame)+5 duration:0.1];
-    //    SKAction *shakeLeft = [SKAction moveToX:CGRectGetMidX(self.frame)-5 duration:0.1];
-    //    SKAction *shakeSequence = [SKAction sequence:@[shakeRight, shakeLeft]];
-    
-    SKAction *moveBottomUp = [SKAction moveToY:CGRectGetMidY(self.frame) duration:0.5];
-    SKAction *wait = [SKAction waitForDuration:.2];
     
     // prepare sprites
-    SKSpriteNode *bottomTrash = [SKSpriteNode spriteNodeWithImageNamed:@"bottom"];
-    bottomTrash.position = CGPointMake(CGRectGetMidX(self.frame), -bottomTrash.size.height);
-    bottomTrash.zPosition = 30;
     [self addChild:bottomTrash];
-    
-    SKSpriteNode *middleTrash = [SKSpriteNode spriteNodeWithImageNamed:@"middle"];
-    middleTrash.position = CGPointMake(CGRectGetMidX(self.frame), -middleTrash.size.height);
-    middleTrash.zPosition = 29;
     [self addChild:middleTrash];
     
-    SKSpriteNode *topTrash = [SKSpriteNode spriteNodeWithImageNamed:@"top"];
-    topTrash.position = CGPointMake(CGRectGetMidX(self.frame), -topTrash.size.height);
-    topTrash.zPosition = 28;
-    [self addChild:topTrash];
+    // create actions
+    SKAction *moveBottomUp = [SKAction moveToY:CGRectGetMidY(self.frame) duration:0.5];
+    SKAction *wait = [SKAction waitForDuration:0.3];
     
     [bottomTrash runAction:moveBottomUp completion:^ {
         [middleTrash runAction:moveBottomUp completion:^{
-            [self runAction:wait completion:^{
+            SKSpriteNode *initialBackground = [SKSpriteNode spriteNodeWithImageNamed:@"initialBG"];
+            initialBackground.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+            initialBackground.zPosition = 28;
+            [self addChild:initialBackground];
+            [middleTrash runAction:wait completion:^{
+                [self moveDownTrash];
+
+            }];
+        }];
+    }];
+}
+
+- (void)moveDownTrash {
+    
+    // create actions
+    SKAction *moveDown = [SKAction moveToY:-self.size.height duration:0.5];
+    SKAction *remove = [SKAction removeFromParent];
+    SKAction *sequence = [SKAction sequence:@[moveDown, remove]];
+    
+    [middleTrash runAction:sequence completion:^{
+        [bottomTrash runAction:sequence completion:^{
+            
                 SKScene *menuScreen = [[MenuScene alloc] initWithSize:self.size];
                 SKTransition *cross = [SKTransition crossFadeWithDuration:0.3];
+                
+                // fade our and stop playback of intro music
+                [self doVolumeFade];
+                
                 [self.view presentScene:menuScreen transition:cross];
-            }];
         }];
     }];
 }
 
 // gets run every frame, used for throwing trash
 - (void)update:(NSTimeInterval)currentTime {
-    
     if(!goingToNextScene){
         if (delayForFlyingTrash == 1) {
             // each screen update, a number from 0 - 100 is generated
@@ -251,7 +274,21 @@
     return 0;
 }
 
+- (void)doVolumeFade {
 
-
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate.bgMusic stop];
+    
+    if (appDelegate.bgMusic.volume > 0.1) {
+        appDelegate.bgMusic.volume = appDelegate.bgMusic.volume - 0.1;
+        [self performSelector:@selector(doVolumeFade) withObject:nil afterDelay:0.1];
+    } else {
+        // Stop and get the sound ready for playing again
+        [appDelegate.bgMusic stop];
+        appDelegate.bgMusic.currentTime = 0;
+        [appDelegate.bgMusic prepareToPlay];
+        appDelegate.bgMusic.volume = 1.0;
+    }
+}
 
 @end

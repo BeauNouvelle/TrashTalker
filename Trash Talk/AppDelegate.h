@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
+
+@property (nonatomic, retain) AVAudioPlayer *bgMusic;
+@property (nonatomic, retain) AVAudioPlayer *redMusic;
 
 @property (strong, nonatomic) UIWindow *window;
 
