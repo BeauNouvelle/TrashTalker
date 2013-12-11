@@ -8,6 +8,7 @@
 
 #import "MouthScene.h"
 #import "MenuScene.h"
+#import "AppDelegate.h"
 
 @implementation MouthScene {
     SKTextureAtlas *textures;
@@ -24,9 +25,7 @@
         textures = [SKTextureAtlas atlasNamed:_textureAtlasName];
         particleTextureImageName = _textureAtlasName;
         
-        // Create a swipe recognizer for the wanted direction
-        [self addSwipeRecognizerForDirection:UISwipeGestureRecognizerDirectionUp];
-        
+        [self doVolumeFade];
         
         animatedTextureArray = [NSArray arrayWithObjects:
                                 [textures textureNamed:@"4"],
@@ -50,6 +49,8 @@
     spitParticle.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
     spitParticle.zPosition = 50;
     spitParticle.particleTexture = [SKTexture textureWithImage:[UIImage imageNamed:particleTextureImageName]];
+    spitParticle.particleBirthRate = 0;
+    [spitParticle resetSimulation];
     [self addChild:spitParticle];
     
     [self setupAudio];
@@ -70,7 +71,7 @@
     NSError *error;
     
     // init and apply settings
-     recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
+    recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
     
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
@@ -84,35 +85,23 @@
         NSLog(@"%@", [error description]);
 }
 
-#pragma mark - Gesture Recognizer
-- (void)addSwipeRecognizerForDirection:(UISwipeGestureRecognizerDirection)direction {
-    // Create a swipe recognizer for the wanted direction
-    UISwipeGestureRecognizer *swipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(isSwiped:)];
-    swipeRecognizer.direction = direction;
-    [self.view addGestureRecognizer:swipeRecognizer];
-}
-
-- (void)isSwiped:(UISwipeGestureRecognizer *)recognizer {
-    if (recognizer.direction == UISwipeGestureRecognizerDirectionUp) {
-        
-    MenuScene *menuScene = [[MenuScene alloc] initWithSize:self.size];
-    SKTransition *cross = [SKTransition revealWithDirection:SKTransitionDirectionUp duration:0.55];
-        
-        // remove gesture recognizers
-        for (UIGestureRecognizer *recognizer in self.view.gestureRecognizers) {
-            [self.view removeGestureRecognizer:recognizer];
-        }
-    
-        // stop recording otherwise the feedback safety will kick in and only play the menu sounds through the earpiece.
-        recorder.meteringEnabled = NO;
-        [recorder stop];
-        
-    [self.view presentScene:menuScene transition:cross];
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    MenuScene *nextScene = [[MenuScene alloc] initWithSize:self.size];
+    SKTransition *trans = [SKTransition revealWithDirection:SKTransitionDirectionUp duration:0.4];
+    if ([_textureAtlasName isEqualToString:@"TrashRat"]) {
+        nextScene.screenPosition = 1;
+    } else if ([_textureAtlasName isEqualToString:@"RottenApple"]) {
+        nextScene.screenPosition = 2;
+    } else if ([_textureAtlasName isEqualToString:@"BlowFly"]) {
+        nextScene.screenPosition = 3;
+    } else if ([_textureAtlasName isEqualToString:@"ScumGum"]) {
+        nextScene.screenPosition = 4;
+    } else if ([_textureAtlasName isEqualToString:@"SourSnail"]) {
+        nextScene.screenPosition = 5;
     }
-}
-
-- (BOOL)gestureRecognizer:(UIPanGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UISwipeGestureRecognizer *)otherGestureRecognizer {
-    return YES;
+    
+    [self.view presentScene:nextScene transition:trans];
+    
 }
 
 #pragma mark - Update Loop
@@ -124,25 +113,38 @@
     if (volumeLevel >= 0.03 && volumeLevel < 0.05) {
         _mouth.texture = [textures textureNamed:@"1"];
     }
-    if (volumeLevel >= 0.05 && volumeLevel < 0.08) {
+    else if (volumeLevel >= 0.05 && volumeLevel < 0.08) {
         _mouth.texture = [textures textureNamed:@"2"];
     }
-    if (volumeLevel >= 0.08 && volumeLevel < 0.10) {
-        [spitParticle resetSimulation];
+    else if (volumeLevel >= 0.08 && volumeLevel < 0.10) {
         _mouth.texture = [textures textureNamed:@"3"];
     }
-    if (volumeLevel >= 0.10 && volumeLevel < 0.13) {
-        [spitParticle resetSimulation];
+    else if (volumeLevel >= 0.10 && volumeLevel < 0.13) {
         _mouth.texture = [textures textureNamed:@"5"];
     }
-    if (volumeLevel >= 0.13) {
+    else if (volumeLevel >= 0.13) {
+        [spitParticle setParticleBirthRate:200];
         [spitParticle resetSimulation];
-        spitParticle.numParticlesToEmit = 10;
-        [spitParticle setParticleBirthRate:50];
+
         SKAction *action = [SKAction animateWithTextures:animatedTextureArray timePerFrame:0.03];
         [_mouth runAction:action];
     }
-//    NSLog(@"Avergae input: %f Peak input: %f othe:%f", [recorder averagePowerForChannel:0], [recorder peakPowerForChannel:0], volumeLevel);
+}
+
+- (void)doVolumeFade {
+    
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    if (appDelegate.redMusic.volume > 0.1) {
+        appDelegate.redMusic.volume = appDelegate.redMusic.volume - 0.1;
+        [self performSelector:@selector(doVolumeFade) withObject:nil afterDelay:0.1];
+    } else {
+        // Stop and get the sound ready for playing again
+        [appDelegate.redMusic stop];
+        appDelegate.redMusic.currentTime = 0;
+        [appDelegate.redMusic prepareToPlay];
+        appDelegate.redMusic.volume = 1.0;
+    }
 }
 
 @end

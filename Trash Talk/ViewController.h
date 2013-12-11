@@ -11,4 +11,8 @@
 
 @interface ViewController : UIViewController
 
+@property (strong, nonatomic) NSString *someProperty;
+
+@property (strong, nonatomic) SKScene *menuScene;
+
 @end

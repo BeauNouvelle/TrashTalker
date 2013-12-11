@@ -36,6 +36,11 @@
 		8B7993A0184E48A4007A5F0D /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B79939E184E48A4007A5F0D /* spark.png */; };
 		8B7993A2184E4CC8007A5F0D /* spark.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8B7993A1184E4CC8007A5F0D /* spark.sks */; };
 		8B7993A4184E4EDE007A5F0D /* dirt.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B7993A3184E4EDE007A5F0D /* dirt.png */; };
+		8BA393A51857F14B00EDF9F8 /* BoringStuffScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA393A41857F14B00EDF9F8 /* BoringStuffScene.m */; };
+		8BA393A81857F16A00EDF9F8 /* OtherAppsScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BA393A71857F16A00EDF9F8 /* OtherAppsScene.m */; };
+		8BA393AA1858BF3900EDF9F8 /* stink.sks in Resources */ = {isa = PBXBuildFile; fileRef = 8BA393A91858BF3900EDF9F8 /* stink.sks */; };
+		8BA393AD1858CA1500EDF9F8 /* BoringStuff.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8BA393AB1858CA1500EDF9F8 /* BoringStuff.atlas */; };
+		8BA393AE1858CA1500EDF9F8 /* OtherApps.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 8BA393AC1858CA1500EDF9F8 /* OtherApps.atlas */; };
 		8BAAE9AE1856AEDD0032AC81 /* initialBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BAAE9AD1856AEDD0032AC81 /* initialBG@2x.png */; };
 		8BAAE9B01856BD6A0032AC81 /* TrashRat.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BAAE9AF1856BD6A0032AC81 /* TrashRat.png */; };
 		8BAAE9B21856C41D0032AC81 /* BlowFly.png in Resources */ = {isa = PBXBuildFile; fileRef = 8BAAE9B11856C41D0032AC81 /* BlowFly.png */; };
@@ -109,6 +114,13 @@
 		8B79939E184E48A4007A5F0D /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spark.png; path = Particles/spark.png; sourceTree = "<group>"; };
 		8B7993A1184E4CC8007A5F0D /* spark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = spark.sks; path = Particles/spark.sks; sourceTree = "<group>"; };
 		8B7993A3184E4EDE007A5F0D /* dirt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dirt.png; path = Particles/dirt.png; sourceTree = "<group>"; };
+		8BA393A31857F14B00EDF9F8 /* BoringStuffScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoringStuffScene.h; sourceTree = "<group>"; };
+		8BA393A41857F14B00EDF9F8 /* BoringStuffScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoringStuffScene.m; sourceTree = "<group>"; };
+		8BA393A61857F16A00EDF9F8 /* OtherAppsScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherAppsScene.h; sourceTree = "<group>"; };
+		8BA393A71857F16A00EDF9F8 /* OtherAppsScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherAppsScene.m; sourceTree = "<group>"; };
+		8BA393A91858BF3900EDF9F8 /* stink.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = stink.sks; path = Particles/stink.sks; sourceTree = "<group>"; };
+		8BA393AB1858CA1500EDF9F8 /* BoringStuff.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = BoringStuff.atlas; path = Textures/BoringStuff.atlas; sourceTree = "<group>"; };
+		8BA393AC1858CA1500EDF9F8 /* OtherApps.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = OtherApps.atlas; path = Textures/OtherApps.atlas; sourceTree = "<group>"; };
 		8BAAE9AD1856AEDD0032AC81 /* initialBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "initialBG@2x.png"; sourceTree = "<group>"; };
 		8BAAE9AF1856BD6A0032AC81 /* TrashRat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrashRat.png; sourceTree = "<group>"; };
 		8BAAE9B11856C41D0032AC81 /* BlowFly.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlowFly.png; sourceTree = "<group>"; };
@@ -206,6 +218,10 @@
 				8B79939A184E2533007A5F0D /* CharacterSpriteNode.m */,
 				8BB2E0A91854183A0025684F /* MouthScene.h */,
 				8BB2E0AA1854183A0025684F /* MouthScene.m */,
+				8BA393A31857F14B00EDF9F8 /* BoringStuffScene.h */,
+				8BA393A41857F14B00EDF9F8 /* BoringStuffScene.m */,
+				8BA393A61857F16A00EDF9F8 /* OtherAppsScene.h */,
+				8BA393A71857F16A00EDF9F8 /* OtherAppsScene.m */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -215,6 +231,8 @@
 			children = (
 				8BB2E0AC185434870025684F /* Mouths */,
 				8B799381184D7A25007A5F0D /* Large Images */,
+				8BA393AB1858CA1500EDF9F8 /* BoringStuff.atlas */,
+				8BA393AC1858CA1500EDF9F8 /* OtherApps.atlas */,
 				8B5B65C21851543D0097EA91 /* EnterScene.atlas */,
 				8B79936F184D63D5007A5F0D /* MenuScene.atlas */,
 				8B799371184D63D5007A5F0D /* SplashScreen.atlas */,
@@ -267,6 +285,7 @@
 				8B79939D184E48A4007A5F0D /* fireFly.sks */,
 				8B79939E184E48A4007A5F0D /* spark.png */,
 				8B7993A1184E4CC8007A5F0D /* spark.sks */,
+				8BA393A91858BF3900EDF9F8 /* stink.sks */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -452,6 +471,7 @@
 				8BB2E0AF185435220025684F /* ScumGum.atlas in Resources */,
 				8BAAE9B01856BD6A0032AC81 /* TrashRat.png in Resources */,
 				8B799391184D90FA007A5F0D /* fenceline@2x.png in Resources */,
+				8BA393AA1858BF3900EDF9F8 /* stink.sks in Resources */,
 				EFF5A43C18430380000E2B06 /* Main.storyboard in Resources */,
 				8B799374184D63D5007A5F0D /* MenuScene.atlas in Resources */,
 				8B79939F184E48A4007A5F0D /* fireFly.sks in Resources */,
@@ -460,6 +480,7 @@
 				8B0BA0AD18558E2C00FFB843 /* POP.caf in Resources */,
 				8B0BA0AB18558E2C00FFB843 /* bg.mp3 in Resources */,
 				8B0BA0B218558E2C00FFB843 /* TinCanDrop.caf in Resources */,
+				8BA393AE1858CA1500EDF9F8 /* OtherApps.atlas in Resources */,
 				8B799393184D90FA007A5F0D /* rubbish@2x.png in Resources */,
 				8B7993A2184E4CC8007A5F0D /* spark.sks in Resources */,
 				8B0BA0AE18558E2C00FFB843 /* red.caf in Resources */,
@@ -467,6 +488,7 @@
 				8B7993A0184E48A4007A5F0D /* spark.png in Resources */,
 				8B799376184D63D5007A5F0D /* SplashScreen.atlas in Resources */,
 				8B799398184D940F007A5F0D /* backtrash@2x.png in Resources */,
+				8BA393AD1858CA1500EDF9F8 /* BoringStuff.atlas in Resources */,
 				8BAAE9B21856C41D0032AC81 /* BlowFly.png in Resources */,
 				8B5B65C71851640B0097EA91 /* bottom@2x.png in Resources */,
 				8B799396184D9406007A5F0D /* sky@2x.png in Resources */,
@@ -495,11 +517,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BA393A51857F14B00EDF9F8 /* BoringStuffScene.m in Sources */,
 				EFF5A43F18430380000E2B06 /* ViewController.m in Sources */,
 				EFF5A43918430380000E2B06 /* AppDelegate.m in Sources */,
 				8BB2E0AB1854183A0025684F /* MouthScene.m in Sources */,
 				8B79937A184D6F7D007A5F0D /* EnterScene.m in Sources */,
 				8B79939B184E2533007A5F0D /* CharacterSpriteNode.m in Sources */,
+				8BA393A81857F16A00EDF9F8 /* OtherAppsScene.m in Sources */,
 				8B79937D184D73BC007A5F0D /* MenuScene.m in Sources */,
 				EFF5A43518430380000E2B06 /* main.m in Sources */,
 				8B79936C184D61AF007A5F0D /* SplashScreen.m in Sources */,

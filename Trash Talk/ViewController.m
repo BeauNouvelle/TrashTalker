@@ -13,15 +13,14 @@
 
 @implementation ViewController
 
-- (void)viewWillLayoutSubviews
-{
+- (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
     
     // Configure the view.
     SKView * skView = (SKView *)self.view;
     if (!skView.scene) {
-        skView.showsFPS = YES;
-        skView.showsNodeCount = YES;
+//        skView.showsFPS = YES;
+//        skView.showsNodeCount = YES;
         
         // Create and configure the scene.
         SKScene * scene = [SplashScreen sceneWithSize:skView.bounds.size];
@@ -45,8 +44,7 @@
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
 }

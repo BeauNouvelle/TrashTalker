@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) SKSpriteNode *character;
 @property (strong, nonatomic) SKSpriteNode *trashCan;
+@property (strong, nonatomic) SKSpriteNode *nameSprite;
 
 @property (nonatomic, strong) NSString *textureName;
 

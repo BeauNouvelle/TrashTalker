@@ -37,9 +37,16 @@
     _character = [self createCharacter];
     _character.position = CGPointMake(self.frame.size.width/2, 50);
     
+
+    // setup name
+    _nameSprite = [self createName];
+    _nameSprite.scale = 0.8;
+    _nameSprite.position = CGPointMake(self.size.width/2, 170);
+    
     // add sprites to node
     [self addChild:_trashCan];
     [self addChild:_character];
+    [self addChild:_nameSprite];
     [_character addChild:myParticle];
 }
 
@@ -65,6 +72,20 @@
     [bin addChild:trashcanFront];
     
     return bin;
+}
+
+- (SKSpriteNode *)createName {
+    SKSpriteNode *newName = [SKSpriteNode spriteNodeWithTexture:[textures textureNamed:[NSString stringWithFormat:@"%@_text", _textureName]]];
+    newName.zPosition = 2;
+    
+    SKAction *scaleUp = [SKAction scaleTo:0.85 duration:0.9];
+    SKAction *scaleDown = [SKAction scaleTo:0.75 duration:0.9];
+    SKAction *sequence = [SKAction sequence:@[scaleUp, scaleDown]];
+    
+    [newName runAction:[SKAction repeatActionForever:sequence]];
+                          
+    return newName;
+    
 }
 
 - (SKAction *)animateWiggle {
