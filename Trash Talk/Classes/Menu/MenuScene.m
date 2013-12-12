@@ -427,11 +427,21 @@
         }
     }
     if ([touchedNode.name isEqualToString:@"boringStuff"]) {
+        // remove gesture recognizers. Otherwise they will persist in next screen and crash the app
+        for (UIGestureRecognizer *recognizer in self.view.gestureRecognizers) {
+            [self.view removeGestureRecognizer:recognizer];
+        }
         BoringStuffScene *boringScene = [[BoringStuffScene alloc] initWithSize:self.size];
+        boringScene.screenPosition = _screenPosition;
         [self.view presentScene:boringScene];
     }
     if ([touchedNode.name isEqualToString:@"otherApps"]) {
+        // remove gesture recognizers. Otherwise they will persist in next screen and crash the app
+        for (UIGestureRecognizer *recognizer in self.view.gestureRecognizers) {
+            [self.view removeGestureRecognizer:recognizer];
+        }
         OtherAppsScene *otherAppsScene = [[OtherAppsScene alloc] initWithSize:self.size];
+        otherAppsScene.screenPosition = _screenPosition;
         [self.view presentScene:otherAppsScene];
     }
 }

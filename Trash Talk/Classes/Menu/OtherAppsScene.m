@@ -72,6 +72,19 @@
         
         NSLog(@"Sprite name %@", touchedNode.name);
         MenuScene *nextScene = [[MenuScene alloc] initWithSize:self.size];
+        
+        if (_screenPosition == 1) {
+            nextScene.screenPosition = 1;
+        } else if (_screenPosition == 2) {
+            nextScene.screenPosition = 2;
+        } else if (_screenPosition == 3) {
+            nextScene.screenPosition = 3;
+        } else if (_screenPosition == 4) {
+            nextScene.screenPosition = 4;
+        } else if (_screenPosition == 5) {
+            nextScene.screenPosition = 5;
+        }
+        
         [self.view presentScene:nextScene];
     
     }

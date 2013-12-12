@@ -12,5 +12,7 @@
 
 @property BOOL contentCreated;
 
+@property (nonatomic) int screenPosition;
+
 
 @end
